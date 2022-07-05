@@ -1,0 +1,31 @@
+@import '../styles/variables.module.scss';
+
+.pawLogoContainer {
+   display: flex;
+
+   .pawLogoContainerPawBox {
+     display: flex;
+     position: relative;
+     width: 20px;
+     height: 20px;
+     margin-right: 20px;
+
+    .pawItemRound{
+        background-color: $mainBackgroung;
+        width: 6px;
+        height: 6px;
+        position: absolute;
+        border-radius: 50%;
+      }
+     .pawItemEllipse{
+       background-color: $mainBackgroung;
+       width: 18px;
+       height: 10px;
+       position: absolute;
+       border-radius: 40%;
+     }
+
+   }
+
+
+}
