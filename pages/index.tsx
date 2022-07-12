@@ -7,10 +7,9 @@ import HomePagePhoto from '../componnts/HomePhoto';
 
 const Home: NextPage = ():JSX.Element => {
   return (
-  <main className={styles.container}>  
-  <FixedMenu/>
-  <HomePagePhoto/>
-  </main>
+    <>
+      <HomePagePhoto/>
+    </>
   )
 }
 

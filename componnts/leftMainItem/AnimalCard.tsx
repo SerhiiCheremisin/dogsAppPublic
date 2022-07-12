@@ -11,13 +11,15 @@ const AnimalCard = ( {...props} ):JSX.Element => {
     const { card } = props
     const route = useRouter();
 
+    const bgColorCustom = route.route === card.linkTo ? 'rgba(255, 134, 142, 1)' : ''
+    const colorCustom = route.route === card.linkTo ? 'white' : ''
+    const borderCustom = route.route === card.linkTo ? '4px solid rgba(251, 224, 220, 1)' : ''
+
     const customStyles: customCardStyle = {
-          background: card.bgColor
+          background: card.bgColor,
+          border: borderCustom
     }
 
-     const bgColorCustom = route.route === card.linkTo ? 'rgba(255, 134, 142, 1)' : ''
-     const colorCustom = route.route === card.linkTo ? 'white' : ''
-    
     return(
         <div className={styles.navigationCardWrapper}>
         <div style={customStyles} className={styles.navigationCard}> 

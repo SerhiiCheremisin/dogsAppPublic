@@ -1,0 +1,80 @@
+.navWrapper {
+  display: flex;
+  width: 100%;
+  background-color: rgb(248, 248, 247);
+  position: relative;
+  flex-direction: column;
+}
+.navWrapper .hiddenMenu {
+  position: absolute;
+  width: 95%;
+  height: 300px;
+  border: 2px solid black;
+  border-radius: 20px;
+  top: 100%;
+  z-index: 1;
+  background-color: #FFFFFF;
+  overflow: scroll;
+  box-shadow: 15px 18px 66px 35px rgba(0, 0, 0, 0.73);
+  -webkit-box-shadow: 15px 18px 66px 35px rgba(0, 0, 0, 0.73);
+  -moz-box-shadow: 15px 18px 66px 35px rgba(0, 0, 0, 0.73);
+}
+.navWrapper .hiddenMenu::-webkit-scrollbar {
+  display: none;
+}
+.navWrapper .hiddenMenu span {
+  display: flex;
+  padding: 5%;
+  width: 100%;
+  height: 20vh;
+}
+.navWrapper .hiddenMenu ul {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.navWrapper .hiddenMenu ul li {
+  list-style: none;
+  cursor: pointer;
+  height: 40px;
+  padding: 4px;
+  display: flex;
+  transition: 0.4s ease;
+}
+.navWrapper .hiddenMenu ul li:hover {
+  background-color: rgb(172, 171, 170);
+}
+.navWrapper .searchAndLinks {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  width: 95%;
+  gap: 10px;
+}
+.navWrapper .searchAndLinks form {
+  display: flex;
+  width: 100%;
+}
+.navWrapper .searchAndLinks input {
+  height: 60px;
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 20px;
+  outline: none;
+  border: none;
+  font-size: 20px;
+  padding: 15px 0 15px 20px;
+  color: rgb(140, 140, 140);
+}
+.navWrapper .searchAndLinks .label {
+  position: absolute;
+  outline: none;
+  border: none;
+  background: none;
+  left: 62%;
+  top: 15%;
+}
+.navWrapper .searchAndLinks .linksBTN {
+  display: flex;
+  gap: 10px;
+}/*# sourceMappingURL=navBar.module.css.map */
