@@ -2,8 +2,8 @@ import type { NextPage } from 'next';
 import styles from '../styles/sharedStyles.module.css';
 
 //components
-import FixedMenu from '../componnts/leftMainItem/LeftFixedMenu';
-import HomePagePhoto from '../componnts/HomePhoto';
+import FixedMenu from '../components/leftMainItem/LeftFixedMenu';
+import HomePagePhoto from '../components/HomePhoto';
 
 const Home: NextPage = ():JSX.Element => {
   return (

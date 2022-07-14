@@ -1,18 +1,22 @@
 import {useState,useEffect} from 'react';
 import { getData } from '../../services/api';
 import { ISingleDog } from '../../types/commonTypes';
+import styles from '../../styles/sharedStyles.module.css';
 
 //components
-import FixedMenu from '../../componnts/leftMainItem/LeftFixedMenu';
-import NavBar from '../../componnts/NavBar/NavBar';
-
-import styles from '../../styles/sharedStyles.module.css';
+import NavBar from '../../components/NavBar/NavBar';
+import Breadcrumb from '../../components/Breadcrumb';
+import BigImage from '../../components/voting/BigImage';
+import LoadingSpinner from '../../components/LoadingSpinner';
+import Logs from '../../components/voting/Logs';
+import AdderButtons from '../../components/voting/Adders';
 
 const VotingPage = ():JSX.Element => {
 
 
     const [randomDog, setRandomDog] = useState<ISingleDog[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isPhotoReady, setIsPhotoReady] = useState<boolean>(false);
 
     const updateState = ():void => {
       getData('/images/search').then( data => {
@@ -33,14 +37,20 @@ const VotingPage = ():JSX.Element => {
       getData('/images/search').then( data => {
             setRandomDog(data?.data);
             setIsLoading(false);
+            setIsPhotoReady(true);
         })
-       return
      }
   },[isLoading])
-  
+
+  const imageRender = isPhotoReady ? <BigImage url={randomDog[0]?.url}/> : <LoadingSpinner/>
+
     return(
       <>
       <NavBar/>
+      <Breadcrumb/>
+      { imageRender }
+      <AdderButtons update={updateState} id={randomDog[0]?.id} />
+      <Logs/>
       </>      
     ) 
 }

@@ -6,7 +6,7 @@ const Layout  = ( {children} ):JSX.Element => {
     return(<>
    <main className={styles.container}>  
     <LeftFixedMenu/>
-    <div className={styles.containerItem}>{children}</div>
+    <div className={styles.containerItemRight}>{children}</div>
     </main>
     </>)
 }

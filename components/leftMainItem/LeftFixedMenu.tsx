@@ -2,7 +2,7 @@ import styles from '../../styles/sharedStyles.module.css';
 import { useRouter } from 'next/router';
 //components
 import PawLogo from './PawLogo';
-import CardRender from '../leftMainItem/CardWithTheLinks';
+import CardRender from './CardWithTheLinks';
 
 const FixedMenu = ():JSX.Element => {
 const router = useRouter();

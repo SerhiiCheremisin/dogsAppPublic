@@ -1,18 +1,21 @@
 import styles from '../../styles/navBar.module.css';
 import shared from '../../styles/sharedStyles.module.css';
-import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { getData } from '../../services/api';
 import { IBreedChunk } from '../../types/commonTypes';
-import Link from 'next/link';
+import { INavBarProps } from '../../types/propsTypes';
+import { useRouter } from 'next/router';
 //components
 import Rectangle from './Rectangle';
+import Link from 'next/link';
+import Image from 'next/image';
 
-const NavBar = (): JSX.Element => {
+const NavBar = ( { isSearchPage, searchName }:INavBarProps ): JSX.Element => {
 
   const [searchedBreed, setSearchedBreed] = useState<string>('');
   const [isSearchAvtive, setIsSearchActive] = useState<boolean>(false);
   const [breeds, setBreeds] = useState<IBreedChunk[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     getData('/breeds').then( data => {
@@ -25,7 +28,14 @@ const NavBar = (): JSX.Element => {
         })
         setBreeds(breedsState);
     })
-  },[])
+  })
+
+  useEffect(() => {
+    if (searchedBreed == '' && router.pathname.includes('search')){
+      setSearchedBreed('');
+      return
+    }
+  },[searchedBreed])
 
   const formHandler = (e:React.FormEvent<HTMLFormElement>):void => {
     e.preventDefault();
@@ -34,7 +44,7 @@ const NavBar = (): JSX.Element => {
 
   const inputHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value;
-     if (value === '') {
+     if (value === '' && !router.pathname.includes('search')) {
         setIsSearchActive(false);
         setSearchedBreed('');
         return
@@ -59,7 +69,7 @@ const NavBar = (): JSX.Element => {
             { result.map( (el:IBreedChunk) =>  {
                 return (
                    <>
-                    <li key={el.id}><Link href={`/search/${el.name.toLocaleLowerCase()}`}><a>{el.name}</a></Link></li>
+                    <li onClick={() => setIsSearchActive(false)} key={el.id}><Link href={`/search/${el.name.toLowerCase()}`}><a>{el.name}</a></Link></li>
                    </>
                 )
             }) }
@@ -68,11 +78,18 @@ const NavBar = (): JSX.Element => {
     )
   }
  
+ const inputValue = isSearchAvtive === false && isSearchPage === true ? searchName : searchedBreed;
+ const inputBorder = isSearchAvtive === false && isSearchPage === true ? 
+ {
+  border: '2px solid #FF868E',
+  color: 'black'} 
+ : {};
+
     return(
         <nav className={styles.navWrapper}>
             <div className={styles.searchAndLinks}> 
             <form action="#" onSubmit={e => formHandler(e)}>
-            <input value={searchedBreed} onChange={e => inputHandler(e)} placeholder='Search for breeds by name' id='input' type="text" />   
+            <input style={inputBorder} value={inputValue} onChange={e => inputHandler(e)} placeholder='Search for breeds by name' id='input' type="text" />   
             { isSearchAvtive &&  listRenderLogic()}    
             <button type='submit' className={styles.label}> 
               <div className={shared.rectangleSmall}>

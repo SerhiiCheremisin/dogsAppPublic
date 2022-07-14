@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import styles from '../../styles/sharedStyles.module.css';
 
-import { CardRenderProps, ICard } from '../../types/commonTypes';
+import { ICard } from '../../types/commonTypes';
+import { CardRenderProps} from '../../types/propsTypes';
 
 //components
-import AnimalCard from '../leftMainItem/AnimalCard';
+import AnimalCard from './AnimalCard';
 
 const CardRender = ( {cards} : CardRenderProps ):JSX.Element => {
 

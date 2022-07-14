@@ -1,5 +1,5 @@
 //components
-import FixedMenu from '../../componnts/leftMainItem/LeftFixedMenu';
+import FixedMenu from '../../components/leftMainItem/LeftFixedMenu';
 
 import styles from '../../styles/sharedStyles.module.css';
 

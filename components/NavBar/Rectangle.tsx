@@ -1,12 +1,12 @@
 import styles from '../../styles/sharedStyles.module.css';
-import { IRectangleProps } from '../../types/commonTypes';
+import { IRectangleProps } from '../../types/propsTypes';
 import Link from 'next/link';
 import Image from 'next/image';
 
 const Rectangle = ( {imageLink, linkTo} :IRectangleProps ):JSX.Element => {
 
     return(
-        <div className={styles.rectangleBig}>
+        <button className={styles.rectangleBig}>
             <Link href={`${linkTo}`}>
             <Image
               src={imageLink}
@@ -15,7 +15,7 @@ const Rectangle = ( {imageLink, linkTo} :IRectangleProps ):JSX.Element => {
               height={30}
             />
             </Link>
-        </div>
+        </button>
     )
 }
 

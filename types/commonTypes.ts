@@ -7,14 +7,6 @@ export interface ICard {
 
 }
 
-export interface CardRenderProps {
-    cards?: ICards
-}
-
-export interface ICards {
-      
-}
-
 export interface customCardStyle {
     background: string,
     border: string
@@ -45,11 +37,6 @@ export interface ISingleDog {
     breeds: IDogObject[]
 }
 
-export interface IRectangleProps {
-    imageLink: string,
-    linkTo: string
-}
-
 export interface IBreedChunk {
     name:string,
     id: number
@@ -74,4 +61,37 @@ export interface IFullDogInfo {
     origin: string,
     reference_image_id: string,
     image: IDogImageData
+}
+
+export interface IVotingBody {
+    image_id : string,
+    value: number
+}
+
+interface IFavoriteImage {
+    id: string,
+    url: string
+}
+  
+export interface IFavorite {
+    created_at: string,
+    id: number,
+    image: IFavoriteImage,
+    image_id: string,
+    sub_id: any,
+    user_id: string,
+}
+
+export interface ILogItem {
+    country_code: string,
+    created_at: string,
+    id: number
+    image_id: string
+    sub_id: any
+    value: number
+}
+
+
+export interface IFavoriteBody {
+    image_id: string,
 }
