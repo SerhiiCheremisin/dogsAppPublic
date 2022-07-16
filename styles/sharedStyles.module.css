@@ -15,6 +15,7 @@
   flex-direction: column;
   gap: 60px;
   width: 48%;
+  height: 60vh;
 }
 .container .containerItem span {
   color: #8C8C8C;
@@ -144,6 +145,21 @@
   cursor: pointer;
   border-radius: 10px;
 }
+.breadcrumbWrapper select {
+  background-color: #F8F8F7;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  color: #8C8C8C;
+  padding: 8px 10px 8px 10px;
+}
+.breadcrumbWrapper select::-webkit-scrollbar {
+  display: none;
+}
+.breadcrumbWrapper select option {
+  cursor: pointer;
+  padding: 5px 10px;
+}
 
 .bigphoto {
   display: flex;
@@ -208,4 +224,59 @@
   padding: 10px;
   display: flex;
   justify-content: center;
+}
+
+.singleDogWrapper {
+  display: grid;
+  border: 2px solid #FBE0DC;
+  border-radius: 20px;
+  padding: 50px 20px 20px 20px;
+  width: 100%;
+  height: 204px;
+  position: relative;
+  justify-items: center;
+  align-items: center;
+  margin-top: 50px;
+  grid-template-columns: repeat(2, 48%);
+  grid-template-rows: 20px 150px;
+  grid-template-areas: "title title" "temperament listInfo";
+}
+.singleDogWrapper span {
+  grid-area: title;
+}
+.singleDogWrapper .temperament {
+  grid-area: temperament;
+}
+.singleDogWrapper .list {
+  grid-area: listInfo;
+}
+.singleDogWrapper .list ul li {
+  list-style: none;
+}
+.singleDogWrapper .titleBlock {
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 52px;
+  color: #1D1D1D;
+  background-color: #FFFFFF;
+  position: absolute;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  left: 16%;
+  top: -20%;
+  padding: 20px 20px 20px 20px;
+}
+
+.rectangleLong {
+  width: 90px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #FF868E;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
 }/*# sourceMappingURL=sharedStyles.module.css.map */

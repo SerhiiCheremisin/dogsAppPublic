@@ -40,20 +40,21 @@ export const getStaticProps = async (context:any):Promise<IStaticPropsReturn> =>
 
 const SearchPAge = ( {...props} ):JSX.Element => {
 
+    const [url, setUrl] = useState<string>('');
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+
     const [breedURL, setBreedURL] = useState<singleMapImage[]>([]);
     const {breed} = props;
     const breedInformation = breed[0];
 
 
-useEffect(() => {
-    getFullInfoForBreed(breedInformation.id)
-    .then( data => {
-        const returnValue:singleMapImage[] = [];
-        returnValue.push({url: data.data[0].url, id:  data.data[0].id});
-        setBreedURL(returnValue);
-    })
-})
-
+    useEffect(() => {
+        getFullInfoForBreed(breedInformation.id)
+        .then( data => {
+            setUrl(data.data[0].url);
+            setIsLoading(false);
+        });
+    },[])
 
     return(
         <>
@@ -66,7 +67,7 @@ useEffect(() => {
        <div>
        <span>Result search for : </span> {breedInformation.name}
        </div>
-       <GridImages images={breedURL}/>
+        {!isLoading && <GridImages images={[{id: breedInformation.id, url: url, name: breedInformation.name}]}/>}  
         </>
     )
 }

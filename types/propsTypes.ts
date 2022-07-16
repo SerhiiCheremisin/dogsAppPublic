@@ -1,4 +1,4 @@
-import { type } from "os"
+import { IDogObject } from '../types/commonTypes';
 
 export interface ICards {
       
@@ -10,7 +10,8 @@ export interface IBigImageProps {
 
 export interface singleMapImage {
     url: string,
-    id: string
+    id: string,
+    name:string
 }
 
 export interface IGridImagesProps {
@@ -38,3 +39,13 @@ export interface IAddersProps {
     update : Function
 }
 
+export interface BreadcrumbProps {
+    breeds? : IDogObject[],
+    setLimit?: Function,
+    setSort? : Function,
+    id?: number;
+}
+
+export interface ISingleDogCardProps {
+    dog : IDogObject
+}

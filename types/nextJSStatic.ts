@@ -20,3 +20,11 @@ interface staticProps {
 export interface IStaticPropsReturn {
     props : staticProps
 }  
+
+interface IFullDog {
+    singleBreed: IFullDogInfo
+}
+
+export interface IStaticSingleBreedProps {
+    props : IFullDog
+}
