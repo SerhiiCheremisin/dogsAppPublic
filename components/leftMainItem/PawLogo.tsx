@@ -1,10 +1,12 @@
 import styles from '../../styles/pawLogoStyles.module.css';
+import Link from 'next/link';
 
 const PawLogo = ():JSX.Element => {
     
     return(
-        <div className={styles.pawLogoContainer}>
-          <div className={styles.pawLogoContainerPawBox}>
+      <Link href={`/`}>
+          <div className={styles.pawLogoContainer}>
+           <div className={styles.pawLogoContainerPawBox}>
             <div style={{left:5,top: 37}} className={styles.pawItemRound}></div>
             <div style={{left:5, top: 27}} className={styles.pawItemRound}></div>
             <div style={{left:11, top: 20}} className={styles.pawItemRound}></div>
@@ -14,7 +16,10 @@ const PawLogo = ():JSX.Element => {
           </div>
             <h1>PetsPaw</h1>
         </div>
+      </Link>
     )
+
+
 }
 
 export default PawLogo;

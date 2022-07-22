@@ -1,5 +1,6 @@
 .pawLogoContainer {
   display: flex;
+  cursor: pointer;
 }
 .pawLogoContainer .pawLogoContainerPawBox {
   display: flex;

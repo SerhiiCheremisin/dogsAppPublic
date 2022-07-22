@@ -16,54 +16,65 @@ const BreedsPage = ():JSX.Element => {
 
     const [breeds, setBreeds] = useState<IFullDogInfo[]>([]);
     const [filteredBreed, setFilteredBreed] = useState<singleMapImage[]>([]);
-    const [limit, setLimit] = useState<number>(20);
+    const [limit, setLimit] = useState<number>(99);
     const [isLoading, setIsLoading] = useState<boolean>(true); 
 
     const selectBreedHandler = () => {
        if (breeds.length !== 0) {
         const tempArray: singleMapImage[] = [];
-
         for (let i = 0; i <= limit-1; i++) {
-            const imageItem = {
+            const imageItem:singleMapImage = {
                 url: breeds[i].image.url,
-                id: Number(breeds[i].id),
+                id: breeds[i].id,
                 name: breeds[i].name
             }
             tempArray.push(imageItem)
         }
-
         setFilteredBreed(tempArray);
      }}
 
      useEffect(() => {
       selectBreedHandler();
-     }, [limit])
+     }, [limit, breeds])
      
 
   useEffect(() => {
     getData('/breeds')
-    .then(data => {
+    .then(data => {  
         setBreeds(data.data);
         setIsLoading(false);
-    });
+    })
   },[])
   
   useEffect(() => {
-    if (!isLoading) {
+    if (isLoading === false) {
         selectBreedHandler();
     }
   },[isLoading])
 
   const breedSorter = (value:string):void => {
-      const newState = [...filteredBreed].sort().reverse();
-      setFilteredBreed(newState);
-  }
+    if (value === 'sort') {
+         if (breeds[0].name === filteredBreed[0].name){
+            return
+         }
+         const sortedArray = [...filteredBreed].reverse()
+         setFilteredBreed(sortedArray);
+    }
+    if (value === 'reverse') {
+        if (breeds[0].name !== filteredBreed[0].name){
+            return
+         }
+         const sortedArray = [...filteredBreed].reverse()
+         setFilteredBreed(sortedArray);
+    }
+    }
+
 
     return(
        <>
        <NavBar/>
-       <Breadcrumb setLimit={setLimit} breeds={breeds} setSort={breedSorter}/>
-       { isLoading === true ? <LoadingSpinner/> : <GridImages images={filteredBreed}/> }   
+       <Breadcrumb update={selectBreedHandler} setLimit={setLimit} breeds={breeds} setSort={breedSorter}/>
+       { isLoading === true ? <LoadingSpinner/> : <GridImages images={filteredBreed} limit={limit}/> }   
        </>
     )
 }

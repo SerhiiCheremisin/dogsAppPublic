@@ -52,34 +52,60 @@ const dynamicImage = (value:number) => {
         ) 
    }
 }
-const dynamicLabel = (id:string) => {
 
+const time = (el:string): string => {
+
+    const minutes = new Date(el).getMinutes() < 10 ? `0${new Date(el).getMinutes()}` : `${new Date(el).getMinutes()}`
+    return `${new Date(el).getHours()}:${minutes}`;
 }
-const time = (el:string): string => `${new Date(el).getHours()}:${new Date(el).getMinutes()}`;
-const addedInfo = (value:string) => `was `
+
+const addedInfo = (value:number) => {
+   let val:string = '';
+    switch (value) {
+         case 1 :
+            val =  'added to likes'
+            break;
+         case 0 :
+            val =  'added to dislikes'
+            break;
+         case undefined:
+            val =  'added to favourites'
+            break;   
+   }
+   
+    return `was ${val}`
+}
 
     const loginList = logs.map( (el:ILogItem | IFavorite) => {
        if (el.hasOwnProperty('value')) {
           return(
                <div key={el.id} className={styles.logListItem}>
-               <time>{time(el.created_at)}</time>
-                <span>Image ID</span>
-                <strong>{el.image_id}</strong>
-                <span>{addedInfo(el.value)}</span>  
-                 {dynamicImage(el.value)}
+                <div className={styles.info}>
+                  <time>{time(el.created_at)}</time>
+                  <span>Image ID</span>
+                  <strong>{el.image_id}</strong>
+                  <span>{addedInfo(el.value)}</span>  
+                </div>
+             <div className={styles.photo}>
+                  {dynamicImage(el.value)}
+             </div>
+
                 </div>
           )
        }
            return(
             <div key={el.id} className={styles.logListItem}>
-            <time>{time(el.created_at)}</time>
-            <span>Image ID</span>
-            <strong>{el.image_id}</strong>
-            <span>{addedInfo(el.value)}</span>    
-             {dynamicImage(2)}
+               <div className={styles.info}>
+                 <time>{time(el.created_at)}</time>
+                 <span>Image ID</span>
+                 <strong>{el.image_id}</strong>
+                 <span>{addedInfo(el.value)}</span>   
+               </div> 
+               <div className={styles.photo}>
+                 {dynamicImage(2)}
+               </div>
             </div>
            )
-
     })
     const renderLogic = logs.length === 0 ? <span>You have not added anything yet</span> : loginList
 

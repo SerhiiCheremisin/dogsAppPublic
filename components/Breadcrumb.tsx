@@ -6,10 +6,9 @@ import React, { useState, useEffect } from 'react';
 
 
 //components
-import Link from 'next/link';
 import Image from 'next/image';
 
-const Breadcrumb = ( {breeds, setLimit, setSort, id}: BreadcrumbProps ):JSX.Element => {
+const Breadcrumb = ( {breeds, setLimit, setSort, id, needToUpdate, refresh, update}: BreadcrumbProps ):JSX.Element => {
 const router = useRouter();
 
 const breedChoserHandler = (e:React.ChangeEvent<HTMLSelectElement>) => {
@@ -31,6 +30,19 @@ const breadcrumbButtonName = () => {
   return router.pathname.toUpperCase().replace('/', '');
 }  
 
+const onChangeHandler = (func: Function,value:string, e:React.ChangeEvent<HTMLSelectElement>) => {
+ if (refresh !== undefined) {
+  if (value === '') {
+    func(e.target.value);
+    refresh;
+  }
+  if (value !== '') {
+    func(value);
+    refresh;
+  }
+ }
+}
+
 const additionSections = () => {
     if(router.pathname === '/breeds') {
         return(
@@ -45,20 +57,24 @@ const additionSections = () => {
                 )
                })}
              </select>
-             <select onChange={ (e:any) => setLimit(e.target.value)} name="limit" id="limit">
-                <option value='5'>Chose the limit</option> 
+             <select onChange={ (e:any) => {
+              setLimit(e.target.value);
+              update();
+             }} name="limit" id="limit">
+                <option value="99">All photos</option> 
                 <option value='5'>{`Limit: 5`}</option>
                 <option value="10">{`Limit: 10`}</option>
                 <option value="15">{`Limit: 15`}</option>
                 <option value="20">{`Limit: 20`}</option>
              </select>
-             <div onClick={() => setSort('sort')} style={{backgroundColor: '#F8F8F7'}} className={styles.rectangleSmall}><Image
+             <div onClick={(e:any) => setSort('sort')} style={{backgroundColor: '#F8F8F7'}} className={styles.rectangleSmall}>
+              <Image
               src='/images/sort-up.png'
               alt="Link to specific page"
               width={20}
               height={20}
             /></div>
-             <div onClick={() => setSort()} style={{backgroundColor: '#F8F8F7'}} className={styles.rectangleSmall}>
+             <div onClick={(e:any) => setSort('reverse')} style={{backgroundColor: '#F8F8F7'}} className={styles.rectangleSmall}>
              <Image
               src='/images/sort-down.png'
               alt="Link to specific page"
@@ -67,15 +83,27 @@ const additionSections = () => {
             />
              </div>
             </>
-        )
-    }
+        )}
+
   if (router.pathname.includes('/breeds/')) {
       return (
         <div className={styles.rectangleLong}>
            {id}
         </div> 
-      )
-  }
+      )}
+
+  if (router.pathname.includes('/gallery')){
+    return(
+      <div onClick={() => needToUpdate(true)} className={styles.uploadPhoto}>
+              <Image
+                src="/images/image-upload.png"
+                alt="Upload photo"
+                width={15}
+                height={15}
+              />
+              UPLOAD
+      </div>
+    )}
 }
 
     return(

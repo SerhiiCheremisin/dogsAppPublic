@@ -86,13 +86,39 @@ export interface IFavorite {
 export interface ILogItem {
     country_code: string,
     created_at: string,
-    id: number
-    image_id: string
-    sub_id: any
-    value: number
+    id: number,
+    image_id: string,
+    sub_id: any,
+    value: number,
 }
 
 
 export interface IFavoriteBody {
     image_id: string,
+}
+
+export type orderType = "Random" | "Ascending" | "Descending";
+export type imageType = "All" | "Static" | "Animated";
+export type limitType = 5 | 10 | 15 | 20 | 99
+
+export interface IImageFeedback {
+    breed_ids: any,
+    breeds: [],
+    created_at: string,
+    height: any,
+    id: string,
+    original_filename: string,
+    sub_id: any,
+    url: string,
+    width: any
+}
+
+
+export interface IFavoriteItem {
+    created_at: string,
+    id: number,
+    image: IFavoriteImage,
+    image_id: string,
+    sub_id: any,
+    user_id: string
 }

@@ -29,19 +29,16 @@ const NavBar = ( { isSearchPage, searchName }:INavBarProps ): JSX.Element => {
         setBreeds(breedsState);
     })
   })
-
   useEffect(() => {
     if (searchedBreed == '' && router.pathname.includes('search')){
       setSearchedBreed('');
       return
     }
   },[searchedBreed])
-
   const formHandler = (e:React.FormEvent<HTMLFormElement>):void => {
     e.preventDefault();
     
   }
-
   const inputHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value;
      if (value === '' && !router.pathname.includes('search')) {
@@ -52,7 +49,6 @@ const NavBar = ( { isSearchPage, searchName }:INavBarProps ): JSX.Element => {
      setIsSearchActive(true);
      setSearchedBreed(value);
   }
-
   const listRenderLogic = () => {
     let result = breeds.filter( (el:IBreedChunk) => el.name.includes(searchedBreed))
    
@@ -76,14 +72,21 @@ const NavBar = ( { isSearchPage, searchName }:INavBarProps ): JSX.Element => {
            </ul>
         </div> 
     )
-  }
- 
+  } 
  const inputValue = isSearchAvtive === false && isSearchPage === true ? searchName : searchedBreed;
  const inputBorder = isSearchAvtive === false && isSearchPage === true ? 
  {
   border: '2px solid #FF868E',
   color: 'black'} 
  : {};
+
+ const favoriteLogic = router.pathname.includes('favorites') ?  '/images/image-heart-Dark.png' : '/images/image-heart.png' ;
+ const likesLogic = router.pathname.includes('/likes') ? '/images/smile-white.png' : '/images/image-smile.png';
+ const dislikesLogic = router.pathname.includes('dislikes') ? '/images/sad-face-white.png' : '/images/image-sad-face.png';
+
+ const isFavActive = router.pathname.includes('favorites') ? true : false;
+ const islikevActive = router.pathname.includes('/likes') ? true : false;
+ const isDislikeActive = router.pathname.includes('dislikes') ? true : false;
 
     return(
         <nav className={styles.navWrapper}>
@@ -104,9 +107,9 @@ const NavBar = ( { isSearchPage, searchName }:INavBarProps ): JSX.Element => {
               </button>  
             </form>
            <div className={styles.linksBTN}>
-            <Rectangle imageLink = '/images/image-smile.png' linkTo= '/likes'/>
-            <Rectangle imageLink = '/images/image-heart.png' linkTo= '/favorites'/>
-            <Rectangle imageLink = '/images/image-sad-face.png' linkTo= '/dislikes'/>
+            <Rectangle isActive={islikevActive} imageLink = {likesLogic} linkTo= '/likes'/>
+            <Rectangle isActive={isFavActive} imageLink = {favoriteLogic} linkTo= '/favorites'/>
+            <Rectangle isActive={isDislikeActive} imageLink = {dislikesLogic} linkTo= '/dislikes'/>
            </div>
             </div> 
         </nav>
