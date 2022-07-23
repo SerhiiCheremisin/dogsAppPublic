@@ -82,3 +82,7 @@ export interface IGalleryNavProps {
     currentID: number;
     setChunk : Function
 }
+
+export interface IBugrerProps {
+    setModal : Function
+}

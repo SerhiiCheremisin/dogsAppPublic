@@ -1,9 +1,11 @@
 .container {
   display: flex;
   width: 100%;
+  height: auto;
   justify-content: space-around;
   padding: 30px 0 0 150px;
   gap: 2%;
+  background-color: #E5E5E5;
 }
 .container .containerGapElement {
   display: flex;
@@ -15,7 +17,12 @@
   flex-direction: column;
   gap: 60px;
   width: 48%;
-  height: 60vh;
+  height: 80vh;
+  background-color: #E5E5E5;
+  border-radius: 20px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: -20px;
 }
 .container .containerItem span {
   color: #8C8C8C;
@@ -29,6 +36,16 @@
   flex-direction: column;
   gap: 20px;
   width: 48%;
+  background-color: #E5E5E5;
+}
+.container .containerItemRight .rightWrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  padding: 15px;
+  gap: 25px;
+  position: relative;
 }
 .container .containerItemRight span {
   color: #8C8C8C;
@@ -189,9 +206,9 @@
   background: #FFFFFF;
   border: 4px solid #FFFFFF;
   border-radius: 20px;
-  position: absolute;
-  left: 70%;
-  top: 65%;
+  position: relative;
+  left: 36%;
+  top: -3%;
 }
 .adderButtonsWrapper .adderButton {
   display: flex;
@@ -237,11 +254,12 @@
   align-items: center;
 }
 .logsWrqpper .logListItem .info time {
-  width: 40px;
+  width: 80px;
   background-color: white;
-  padding: 10px;
+  padding: 10px 0;
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-right: 30px;
 }
 .logsWrqpper .logListItem .photo {
@@ -312,6 +330,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 11px;
   color: rgb(255, 134, 142);
   cursor: pointer;
   margin-left: 415px;

@@ -2,6 +2,7 @@ import { IStaticPathsReturn, IStaticSingleBreedProps } from '../../types/nextJSS
 import { getData, getFullInfoForBreed, getBasicInfoForBreed } from '../../services/api';
 import { IDogObject } from '../../types/commonTypes';
 import { useEffect, useState } from 'react';
+import styles from '../../styles/sharedStyles.module.css';
 
 
 //components
@@ -10,7 +11,7 @@ import Breadcrumb from '../../components/Breadcrumb';
 import BigImage from '../../components/voting/BigImage';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import SingleDogCard from '../../components/SingleDogCard';
-
+import Head from 'next/head';
 
 export const getStaticPaths = async ():Promise<IStaticPathsReturn> => {
     
@@ -36,9 +37,7 @@ export const getStaticProps = async (context:any):Promise<IStaticSingleBreedProp
     });
     return {
         props: {singleBreed: breedPageProps}
-    }
-}
-
+    }}
 
 const SingleBreedInfo = ( {...props} ):JSX.Element => {
 
@@ -57,10 +56,21 @@ const SingleBreedInfo = ( {...props} ):JSX.Element => {
 
     return(
         <>
+    <Head>
+      <title>{`${breed.name} page`}</title>
+      <meta name="description" content={`This single breed dog page. Check details about ${breed.name} below`}/>
+    </Head>
      <NavBar/>
+     <div style={{height: '88vh'}} className={styles.rightWrapper}>
      <Breadcrumb id ={breed.id}/>
-     { isLoading ? <LoadingSpinner/> : <BigImage url ={url}/> }  
+     { 
+     isLoading ? 
+     <LoadingSpinner/> 
+     : 
+     <BigImage url ={url}/> 
+     }  
      <SingleDogCard dog={breed} />
+     </div>
         </>
     )
 }

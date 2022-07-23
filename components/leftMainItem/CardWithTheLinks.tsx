@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import styles from '../../styles/sharedStyles.module.css';
-
 import { ICard } from '../../types/commonTypes';
 import { CardRenderProps} from '../../types/propsTypes';
 
@@ -9,7 +8,7 @@ import AnimalCard from './AnimalCard';
 
 const CardRender = ( {cards} : CardRenderProps ):JSX.Element => {
 
-    const [dogCards, setdogCards] = useState<ICard[]>([])
+  const [dogCards, setdogCards] = useState<ICard[]>([])
 
 useEffect(() => {
  if(cards === undefined) {

@@ -1,14 +1,18 @@
 import styles from '../../styles/navBar.module.css';
 import shared from '../../styles/sharedStyles.module.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { getData } from '../../services/api';
 import { IBreedChunk } from '../../types/commonTypes';
 import { INavBarProps } from '../../types/propsTypes';
 import { useRouter } from 'next/router';
+import { WidthContext } from '../../pages/_app';
+
 //components
 import Rectangle from './Rectangle';
 import Link from 'next/link';
 import Image from 'next/image';
+import BurgerMenu from '../BurgerMenu';
+import AdapriveMainMenu from '../AdaptiveMainMenu';
 
 const NavBar = ( { isSearchPage, searchName }:INavBarProps ): JSX.Element => {
 

@@ -10,8 +10,8 @@
   grid-template-areas: "high1 regular1 regular2" "high1 big1 big1" "regular3 big1 big1";
 }
 .gridWrapperOne .bigImage {
-  width: 500px;
-  height: 300px;
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
   position: relative;
 }
@@ -20,13 +20,14 @@
 }
 .gridWrapperOne .bigImage .hiddenFilter .favoriteDiv {
   left: 45%;
+  top: 40%;
 }
 .gridWrapperOne .bigImage:nth-child(5) {
   grid-area: big1;
 }
 .gridWrapperOne .regularImage {
-  width: 230px;
-  height: 160px;
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
   position: relative;
 }
@@ -34,7 +35,8 @@
   left: 11%;
 }
 .gridWrapperOne .regularImage .hiddenFilter .favoriteDiv {
-  left: 40%;
+  left: 35%;
+  top: 35%;
 }
 .gridWrapperOne .regularImage:nth-child(2) {
   grid-area: regular1;
@@ -46,8 +48,8 @@
   grid-area: regular3;
 }
 .gridWrapperOne .longImage {
-  width: 230px;
-  height: 300px;
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
   position: relative;
 }
@@ -55,7 +57,8 @@
   left: 11%;
 }
 .gridWrapperOne .longImage .hiddenFilter .favoriteDiv {
-  left: 40%;
+  left: 35%;
+  top: 45%;
 }
 .gridWrapperOne .longImage:nth-child(1) {
   grid-area: high1;
@@ -96,8 +99,9 @@
   border-radius: 10px;
   position: absolute;
   cursor: pointer;
-  top: 40%;
   border: none;
+  width: 70px;
+  height: 50px;
 }
 .gridWrapperOne .longImage:hover .hiddenFilter, .gridWrapperOne .regularImage:hover .hiddenFilter, .gridWrapperOne .bigImage:hover .hiddenFilter {
   display: flex;
@@ -118,8 +122,8 @@
   grid-template-areas: "regular1 regular2 high" "big big high" "big big regular3";
 }
 .gridWrapperTwo .bigImage {
-  width: 500px;
-  height: 300px;
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
   position: relative;
 }
@@ -127,14 +131,15 @@
   left: 33%;
 }
 .gridWrapperTwo .bigImage .hiddenFilter .favoriteDiv {
+  top: 40%;
   left: 45%;
 }
 .gridWrapperTwo .bigImage:nth-child(4) {
   grid-area: big;
 }
 .gridWrapperTwo .regularImage {
-  width: 230px;
-  height: 160px;
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
   position: relative;
 }
@@ -142,7 +147,8 @@
   left: 11%;
 }
 .gridWrapperTwo .regularImage .hiddenFilter .favoriteDiv {
-  left: 40%;
+  top: 35%;
+  left: 35%;
 }
 .gridWrapperTwo .regularImage:nth-child(1) {
   grid-area: regular1;
@@ -154,8 +160,8 @@
   grid-area: regular3;
 }
 .gridWrapperTwo .longImage {
-  width: 230px;
-  height: 300px;
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
   position: relative;
 }
@@ -163,7 +169,8 @@
   left: 11%;
 }
 .gridWrapperTwo .longImage .hiddenFilter .favoriteDiv {
-  left: 40%;
+  top: 35%;
+  left: 45%;
 }
 .gridWrapperTwo .longImage:nth-child(3) {
   grid-area: high;
@@ -204,8 +211,8 @@
   border-radius: 10px;
   position: absolute;
   cursor: pointer;
-  top: 40%;
-  border: none;
+  width: 70px;
+  height: 50px;
 }
 .gridWrapperTwo .longImage:hover .hiddenFilter, .gridWrapperTwo .regularImage:hover .hiddenFilter, .gridWrapperTwo .bigImage:hover .hiddenFilter {
   display: flex;
@@ -226,9 +233,9 @@
 .navBTNS .navBTNItem {
   border: none;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  width: 200px;
+  width: 150px;
   height: 40px;
   border-radius: 10px;
   cursor: pointer;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getData, getOneImage} from '../../services/api';
+import styles from '../../styles/sharedStyles.module.css';
 
 //components
 import Breadcrumb from '../../components/Breadcrumb';
@@ -9,7 +10,7 @@ import GridImages from '../../components/voting/GridImages';
 import NoData from '../../components/NoData';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import { singleMapImage } from '../../types/propsTypes';
-
+import Head from 'next/head';
 
 const Likesage = ():JSX.Element => {
 
@@ -49,6 +50,10 @@ const Likesage = ():JSX.Element => {
  if (isLoading) {
   return(
     <>
+    <Head>
+      <title>Likes page</title>
+      <meta name="description" content={`This likes page. Check details below`}/>
+    </Head>
     <NavBar/>
     <Breadcrumb/>
     <LoadingSpinner/>
@@ -57,8 +62,14 @@ const Likesage = ():JSX.Element => {
 }
 
    return (
-    <div>
-        <NavBar/>
+    <>
+    <Head>
+      <title>Likes page</title>
+      <meta name="description" content={`This likes page. Check details below`}/>
+    </Head>
+     <NavBar/>
+      <div>
+        <div className={styles.rightWrapper}>
         <Breadcrumb/>
         { imageProps.length === 0 ? 
         <NoData/> :
@@ -67,8 +78,10 @@ const Likesage = ():JSX.Element => {
         <Logs/>
         </>
          }
-       
+      </div>    
     </div>
+    </>
+
   )
 }
 

@@ -1,8 +1,9 @@
 import styles from '../../styles/sharedStyles.module.css';
-import Image from 'next/image';
 import { IAddersProps, } from '../../types/propsTypes';
 import { IVotingBody, IFavoriteBody } from '../../types/commonTypes';
 import { voteForPhoto, addTofavourites } from '../../services/api';
+
+import Image from 'next/image';
 
 const AdderButtons = ( {id, update} : IAddersProps ):JSX.Element => {
  

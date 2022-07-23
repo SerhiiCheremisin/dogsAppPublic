@@ -48,8 +48,8 @@ const GalleryNavBTNS = ( {amount, setChunk, currentID}:IGalleryNavProps ):JSX.El
        <Image
          src="/images/image-arrow-left.png"
          alt="Picture of the author"
-         width={25}
-         height={25}
+         width={15}
+         height={15}
        />
         PREV
        </button>
@@ -58,8 +58,8 @@ const GalleryNavBTNS = ( {amount, setChunk, currentID}:IGalleryNavProps ):JSX.El
        <Image
          src="/images/image-arrow-right.png"
          alt="Picture of the author"
-         width={25}
-         height={25}
+         width={15}
+         height={15}
        />
        </button>
     </div>

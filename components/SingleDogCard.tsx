@@ -12,9 +12,9 @@ const SingleDogCard = ( {dog} : ISingleDogCardProps ) : JSX.Element => {
           </div>
           <div className={styles.list}>
             <ul>
-                <li><strong>Origin :</strong><span>{dog.origin}</span></li>  
-                <li><strong>Weight :</strong><span>{`${dog.weight.metric} kgs`}</span></li>  
-                <li><strong>Life span :</strong><span>{dog.life_span}</span></li>
+                <li><strong>Origin : </strong><span>{dog.origin !== undefined ? dog.origin : 'Uknown' }</span></li>  
+                <li><strong>Weight : </strong><span>{`${dog.weight.metric} kgs`}</span></li>  
+                <li><strong>Life span : </strong><span>{dog.life_span}</span></li>
             </ul>
           </div>
 

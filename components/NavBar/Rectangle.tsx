@@ -1,5 +1,6 @@
 import styles from '../../styles/sharedStyles.module.css';
 import { IRectangleProps } from '../../types/propsTypes';
+
 import Link from 'next/link';
 import Image from 'next/image'; 
 

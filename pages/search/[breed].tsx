@@ -3,6 +3,7 @@ import { staticPath, IStaticPathsReturn, IStaticPropsReturn } from '../../types/
 import { IDogObject, IFullDogInfo} from '../../types/commonTypes';
 import { singleMapImage } from '../../types/propsTypes';
 import { useState, useEffect } from 'react';
+import styles from '../../styles/sharedStyles.module.css';
 
 //components
 import Head from "next/head";
@@ -47,7 +48,6 @@ const SearchPAge = ( {...props} ):JSX.Element => {
     const {breed} = props;
     const breedInformation = breed[0];
 
-
     useEffect(() => {
         getFullInfoForBreed(breedInformation.id)
         .then( data => {
@@ -62,12 +62,14 @@ const SearchPAge = ( {...props} ):JSX.Element => {
             <title>{`This is page for a ${breedInformation.name}`}</title>
             <meta name="description" content={`This is page for a ${breedInformation.name}. Check details below`}/>
         </Head>
-       <NavBar isSearchPage={true} searchName={breedInformation.name} />
-       <Breadcrumb/> 
-       <div>
-       <span>Result search for : </span> {breedInformation.name}
-       </div>
-        {!isLoading && <GridImages images={[{id: breedInformation.id, url: url, name: breedInformation.name}]}/>}  
+        <NavBar isSearchPage={true} searchName={breedInformation.name} />
+        <div style={{height: '88vh'}} className={styles.rightWrapper}>
+        <Breadcrumb/> 
+        <div>
+        <span>Result search for : </span> {breedInformation.name}
+        </div>
+         {!isLoading && <GridImages images={[{id: breedInformation.id, url: url, name: breedInformation.name}]}/>}
+        </div>
         </>
     )
 }

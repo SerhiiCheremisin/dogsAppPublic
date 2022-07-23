@@ -3,7 +3,7 @@ import Breadcrumb from '../../components/Breadcrumb';
 import NavBar from '../../components/NavBar/NavBar';
 import GalleryFilters from '../../components/gallery/GalleryFilters';
 import GridImages from '../../components/voting/GridImages';
-import UploadPortal from './UploadPortal';
+import UploadPortal from '../../components/gallery/UploadPortal';
 
 import styles from '../../styles/sharedStyles.module.css';
 import { useState, useEffect } from 'react';
@@ -11,16 +11,26 @@ import { getData } from '../../services/api';
 import { IFullDogInfo, orderType, imageType, limitType } from '../../types/commonTypes';
 import { singleMapImage } from '../../types/propsTypes';
 
+import Head from 'next/head';
+
 const GalleryPage = ():JSX.Element => {
 
 const [breeds, setBreeds] = useState<IFullDogInfo[]>([]);
-const [limitedBreeds, setLimitedBreeds] = useState<IFullDogInfo[]>([])
 const [limit, setLimit] = useState<limitType>(99);
 const [order, setOrder] = useState<orderType>('Random');
 //not sure how to implement this one properly. Api by type did not work for me when i have tested it
 const [type, setType] = useState<imageType>('All');
 const [imageGrid, setImageGrid] = useState<singleMapImage[]>([]);
 const [isUploadNeeded, setIsUploadNeeded] = useState<boolean>(false);
+
+useEffect(() => {
+  if (isUploadNeeded) {
+    document.body.style.overflow = 'hidden'
+  }
+  return () => [
+    document.body.style.overflow = 'scroll'
+  ]
+}, [isUploadNeeded])
 
 const refreshBreed = () => {
     if (breeds.length !== 0) {
@@ -74,15 +84,33 @@ useEffect(() => {
 useEffect(() => {
     refreshBreed();
 },[limit, breeds, order])
-
-
+   
+if (isUploadNeeded) {
+    return(
+        <>
+    <Head>
+      <title>Gallery page</title>
+      <meta name="description" content={`This Gallery page. Check details below`}/>
+    </Head>
+        <NavBar/>
+         <div className={styles.rightWrapper}>
+         <UploadPortal setVisability={setIsUploadNeeded}/> 
+         </div>
+        </>
+    )}
+  
     return(
      <>
-     { isUploadNeeded && <UploadPortal setVisability={setIsUploadNeeded}/> }
+    <Head>
+      <title>Gallery page</title>
+      <meta name="description" content={`This Gallery page. Check details below`}/>
+    </Head>
      <NavBar/>
+     <div className={styles.rightWrapper}>
      <Breadcrumb refresh={refreshBreed} needToUpdate={setIsUploadNeeded} />
      <GalleryFilters setImagesView={setImageGrid} refresh={refreshBreed} setLimit={setLimit} setOrder={setOrder} setType={setType} breeds = {breeds}/>
      <GridImages limit={limit} images={imageGrid}/>
+     </div>
      </>
     )
 }

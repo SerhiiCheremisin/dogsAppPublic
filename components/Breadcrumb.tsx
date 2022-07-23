@@ -30,19 +30,6 @@ const breadcrumbButtonName = () => {
   return router.pathname.toUpperCase().replace('/', '');
 }  
 
-const onChangeHandler = (func: Function,value:string, e:React.ChangeEvent<HTMLSelectElement>) => {
- if (refresh !== undefined) {
-  if (value === '') {
-    func(e.target.value);
-    refresh;
-  }
-  if (value !== '') {
-    func(value);
-    refresh;
-  }
- }
-}
-
 const additionSections = () => {
     if(router.pathname === '/breeds') {
         return(
@@ -57,10 +44,7 @@ const additionSections = () => {
                 )
                })}
              </select>
-             <select onChange={ (e:any) => {
-              setLimit(e.target.value);
-              update();
-             }} name="limit" id="limit">
+             <select onChange={ (e:any) => setLimit(Number(e.target.value))} name="limit" id="limit">
                 <option value="99">All photos</option> 
                 <option value='5'>{`Limit: 5`}</option>
                 <option value="10">{`Limit: 10`}</option>

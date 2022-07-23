@@ -1,16 +1,15 @@
 import styles from '../../styles/sharedStyles.module.css';
 import { useRouter } from 'next/router';
+
 //components
 import PawLogo from './PawLogo';
 import CardRender from './CardWithTheLinks';
 
 const FixedMenu = ():JSX.Element => {
 const router = useRouter();
-
-const bgColorLogic = router.route !== '/' ? "rgba(248, 248, 247, 1)" : ""
-
+ 
     return(
-        <aside style={{backgroundColor: bgColorLogic}} className={styles.containerItem}>
+        <aside className={styles.containerItem}>
           <PawLogo/>    
          <div className={styles.containerGapElement}>
          <h1>Hi intern!</h1>

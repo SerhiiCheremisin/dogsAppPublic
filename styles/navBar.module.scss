@@ -4,7 +4,7 @@
 .navWrapper{
     display: flex;
     width: 100%;
-    background-color: $sharedBackgroundColor;
+    background-color: $mainBackground;
     position: relative;
     flex-direction: column;
   
@@ -50,16 +50,17 @@
         }
     }
    }
-
    .searchAndLinks{ 
     display: flex;
     justify-items: center;
     align-items: center;
-    width: 95%;
+    width: 100%;
     gap: 10px;
+
     form {
         display: flex;
         width: 100%;
+        position: relative;
     }
 
     input{
@@ -72,13 +73,23 @@
         font-size: 20px;
         padding: 15px 0 15px 20px;
         color: rgba(140, 140, 140, 1);
+
+        &:focus{
+            border: 3px solid #FBE0DC;
+        }
       }
       .label{
+        @media only screen and (max-width: 1000px) {
+            display: none;
+           }
+        @media only screen and (max-width: 1366px) {
+            left: 93%;
+           }
           position: absolute;
           outline: none;
           border: none;
           background: none;
-          left: 62%;
+          left: 90%;
           top: 15%;
          }
 
@@ -87,3 +98,70 @@
         gap: 10px;
 
 }}}
+
+
+.burger{
+    display: flex;
+    width: 120px;
+    height: 60px;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .burgerLine{
+        width: 30px;
+        height: 5px;
+        border-radius: 10px;
+        background-color: #FF868E;
+        position: relative;
+
+        &::after{
+            content: ' ';
+            width: 30px;
+            height: 5px;
+            border-radius: 10px;
+            background-color: #FF868E;
+            position: absolute;
+            top : 10px;
+        }
+        &::before{
+            content: ' ';
+            width: 30px;
+            height: 5px;
+            border-radius: 10px;
+            background-color: #FF868E;
+            position: absolute;
+            top : -10px;
+        }
+        
+    }
+}
+
+.mobileModal{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    background-color: $mainBackground;
+    
+    .closeModalWrapper{
+        position: relative;
+        top: -27%;
+        left: 47%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .closeModalBTN{
+           
+        }
+    }
+   
+}

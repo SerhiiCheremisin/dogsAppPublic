@@ -1,4 +1,5 @@
 
+
 export interface ICard {
     linkTo: string,
     name: string,

@@ -47,7 +47,7 @@ useEffect(() => {
  }
 },[images])
 
-const fullrespond = () => {
+const fullrespond = ():JSX.Element => {
 
     return(
         <>

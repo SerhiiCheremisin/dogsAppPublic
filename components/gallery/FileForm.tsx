@@ -7,7 +7,6 @@ import { IFileFormProps } from '../../types/propsTypes';
 
 const FileForm = ( {setLoaded, setFile, setSendedPhoto, file}:IFileFormProps ) :JSX.Element => {
 
-
     const uploadHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files[0] !== undefined) {
             const data = new FormData();

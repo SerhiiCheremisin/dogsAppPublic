@@ -1,7 +1,7 @@
 .navWrapper {
   display: flex;
   width: 100%;
-  background-color: rgb(248, 248, 247);
+  background-color: #E5E5E5;
   position: relative;
   flex-direction: column;
 }
@@ -48,12 +48,13 @@
   display: flex;
   justify-items: center;
   align-items: center;
-  width: 95%;
+  width: 100%;
   gap: 10px;
 }
 .navWrapper .searchAndLinks form {
   display: flex;
   width: 100%;
+  position: relative;
 }
 .navWrapper .searchAndLinks input {
   height: 60px;
@@ -66,15 +67,86 @@
   padding: 15px 0 15px 20px;
   color: rgb(140, 140, 140);
 }
+.navWrapper .searchAndLinks input:focus {
+  border: 3px solid #FBE0DC;
+}
 .navWrapper .searchAndLinks .label {
   position: absolute;
   outline: none;
   border: none;
   background: none;
-  left: 62%;
+  left: 90%;
   top: 15%;
+}
+@media only screen and (max-width: 1000px) {
+  .navWrapper .searchAndLinks .label {
+    display: none;
+  }
+}
+@media only screen and (max-width: 1366px) {
+  .navWrapper .searchAndLinks .label {
+    left: 93%;
+  }
 }
 .navWrapper .searchAndLinks .linksBTN {
   display: flex;
   gap: 10px;
+}
+
+.burger {
+  display: flex;
+  width: 120px;
+  height: 60px;
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.burger .burgerLine {
+  width: 30px;
+  height: 5px;
+  border-radius: 10px;
+  background-color: #FF868E;
+  position: relative;
+}
+.burger .burgerLine::after {
+  content: " ";
+  width: 30px;
+  height: 5px;
+  border-radius: 10px;
+  background-color: #FF868E;
+  position: absolute;
+  top: 10px;
+}
+.burger .burgerLine::before {
+  content: " ";
+  width: 30px;
+  height: 5px;
+  border-radius: 10px;
+  background-color: #FF868E;
+  position: absolute;
+  top: -10px;
+}
+
+.mobileModal {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background-color: #E5E5E5;
+}
+.mobileModal .closeModalWrapper {
+  position: relative;
+  top: -27%;
+  left: 47%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }/*# sourceMappingURL=navBar.module.css.map */

@@ -6,7 +6,7 @@ import { IPortalProps } from '../../types/propsTypes';
 import { IImageFeedback } from '../../types/commonTypes';
 import { uploadPhoto, getUploadPhoto, getPhotoAnalysis} from '../../services/api';
 
-import FileForm from '../../components/gallery/FileForm';
+import FileForm from './FileForm';
 
 
 const UploadPortal = ( {setVisability} : IPortalProps ):JSX.Element => {
@@ -72,7 +72,7 @@ const UploadPortal = ( {setVisability} : IPortalProps ):JSX.Element => {
         <div className={styles.portalWrapper}>
           <div className={styles.portalCard}>
           <div>
-            <button onClick={() => setVisability(false)} style={{marginBottom: '40px'}} className={shared.rectangleSmall}>
+            <button onClick={() => setVisability(false)} style={{marginBottom: '40px', marginLeft: '93%'}} className={shared.rectangleSmall}>
             <Image
                 src="/images/image-cross.png"
                 alt="Picture of the author"

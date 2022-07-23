@@ -2,8 +2,8 @@ import styles from '../../styles/sharedStyles.module.css';
 import { getData } from '../../services/api';
 import { useEffect, useState } from 'react';
 import { ILogItem, IFavorite } from '../../types/commonTypes';
-import Image from 'next/image';
 
+import Image from 'next/image';
 
 const Logs = ():JSX.Element => {
 
@@ -19,7 +19,6 @@ const Logs = ():JSX.Element => {
             setLogs(state);
         })
     },[])
-console.log(logs);
 
 const dynamicImage = (value:number) => {
     switch(value) {

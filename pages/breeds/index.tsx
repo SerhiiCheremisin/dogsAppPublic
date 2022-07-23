@@ -3,6 +3,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import Breadcrumb from '../../components/Breadcrumb';
 import GridImages from '../../components/voting/GridImages';
 import LoadingSpinner from '../../components/LoadingSpinner';
+import Head from 'next/head';
 
 import { useState, useEffect } from 'react';
 import { getData } from '../../services/api';
@@ -35,23 +36,26 @@ const BreedsPage = ():JSX.Element => {
 
      useEffect(() => {
       selectBreedHandler();
-     }, [limit, breeds])
+     }, [limit])
      
 
   useEffect(() => {
     getData('/breeds')
     .then(data => {  
         setBreeds(data.data);
+        const tempArray: singleMapImage[] = [];
+        for (let i = 0; i <= limit-1; i++) {
+            const imageItem:singleMapImage = {
+                url: data.data[i].image.url,
+                id: data.data[i].id,
+                name: data.data[i].name
+            }
+            tempArray.push(imageItem)
+        setFilteredBreed(tempArray);   
         setIsLoading(false);
-    })
+   } })
   },[])
   
-  useEffect(() => {
-    if (isLoading === false) {
-        selectBreedHandler();
-    }
-  },[isLoading])
-
   const breedSorter = (value:string):void => {
     if (value === 'sort') {
          if (breeds[0].name === filteredBreed[0].name){
@@ -69,12 +73,17 @@ const BreedsPage = ():JSX.Element => {
     }
     }
 
-
     return(
        <>
+    <Head>
+      <title>Breeds page</title>
+      <meta name="description" content={`This main page. Check information about any breed you want`}/>
+    </Head>
        <NavBar/>
+       <div className={styles.rightWrapper}>
        <Breadcrumb update={selectBreedHandler} setLimit={setLimit} breeds={breeds} setSort={breedSorter}/>
        { isLoading === true ? <LoadingSpinner/> : <GridImages images={filteredBreed} limit={limit}/> }   
+       </div>
        </>
     )
 }

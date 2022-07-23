@@ -1,13 +1,10 @@
 import styles from '../../styles/gridImages.module.css';
 import { IGridImagesProps, singleMapImage } from '../../types/propsTypes';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
-import Link from 'next/link';
-import { addTofavourites } from '../../services/api';
+import { useEffect, useState } from 'react';
 
 import GritTierOne from '../GridTierOne';
 import GritTierTwo from '../GridTierTwo';
-import { useEffect, useState } from 'react';
 import LoadingSpinner from '../LoadingSpinner';
 import TooManyPhotos from '../TooManyPhotos';
 

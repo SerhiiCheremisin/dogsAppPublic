@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getData, getOneImage} from '../../services/api';
+import styles from '../../styles/sharedStyles.module.css';
+import { singleMapImage } from '../../types/propsTypes';
 
 //components
 import Breadcrumb from '../../components/Breadcrumb';
@@ -8,7 +10,7 @@ import Logs from '../../components/voting/Logs';
 import GridImages from '../../components/voting/GridImages';
 import NoData from '../../components/NoData';
 import LoadingSpinner from '../../components/LoadingSpinner';
-import { singleMapImage } from '../../types/propsTypes';
+import Head from 'next/head';
 
 const DislikePage = ():JSX.Element => {
   const [dislikes, setDisLikes] = useState<[]>([]);
@@ -47,6 +49,10 @@ const DislikePage = ():JSX.Element => {
   if (isLoading) {
     return(
       <>
+    <Head>
+      <title>Dislike page</title>
+      <meta name="description" content={`This dislike page. Check details below`}/>
+    </Head>
       <NavBar/>
       <Breadcrumb/>
       <LoadingSpinner/>
@@ -55,18 +61,26 @@ const DislikePage = ():JSX.Element => {
   }
 
    return (
-    <div>
-        <NavBar/>
+    <>
+    <Head>
+      <title>Dislike page</title>
+      <meta name="description" content={`This dislike page. Check details below`}/>
+    </Head>
+      <NavBar/>
+      <div>
+       <div className={styles.rightWrapper}>
         <Breadcrumb/>
-        { dislikes.length === 0 ? 
+        { 
+        dislikes.length === 0 ? 
         <NoData/> :
         <>
         <GridImages images={imageProps}/>
         <Logs/>
         </>
          }
-       
+       </div>
     </div>
+    </>
   )
 }
 

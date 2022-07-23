@@ -1,7 +1,7 @@
 import styles from '../../styles/sharedStyles.module.css';
-import Image from 'next/image';
 import { IBigImageProps } from '../../types/propsTypes';
 
+import Image from 'next/image';
 
 const BigImage = ( {url} : IBigImageProps ):JSX.Element => {
     return(

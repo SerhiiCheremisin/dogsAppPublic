@@ -10,9 +10,9 @@ import BigImage from '../../components/voting/BigImage';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import Logs from '../../components/voting/Logs';
 import AdderButtons from '../../components/voting/Adders';
+import Head from 'next/head';
 
 const VotingPage = ():JSX.Element => {
-
 
     const [randomDog, setRandomDog] = useState<ISingleDog[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -21,8 +21,7 @@ const VotingPage = ():JSX.Element => {
     const updateState = ():void => {
       getData('/images/search').then( data => {
             setRandomDog(data?.data);
-        })
-    
+        })   
     }
 
  useEffect(() => {
@@ -46,12 +45,18 @@ const VotingPage = ():JSX.Element => {
 
     return(
       <>
-      <NavBar/>
-      <Breadcrumb/>
-      { imageRender }
-      <AdderButtons update={updateState} id={randomDog[0]?.id} />
-      <Logs/>
-      </>      
+      <Head>
+        <title>Voting page</title>
+        <meta name="description" content={`This isvoting page. Check details below`}/>
+      </Head>
+        <NavBar/>
+        <div className={styles.rightWrapper}>
+        <Breadcrumb/>
+        { imageRender }
+        <AdderButtons update={updateState} id={randomDog[0]?.id} />
+        <Logs/>
+        </div>  
+     </>
     ) 
 }
 

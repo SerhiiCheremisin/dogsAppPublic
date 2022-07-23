@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getData } from '../../services/api';
 import { IFavoriteItem } from '../../types/commonTypes';
 import { IGridImagesProps, singleMapImage } from '../../types/propsTypes';
+import styles from '../../styles/sharedStyles.module.css';
 
 //components
 import Breadcrumb from '../../components/Breadcrumb';
@@ -10,7 +11,7 @@ import Logs from '../../components/voting/Logs';
 import GridImages from '../../components/voting/GridImages';
 import NoData from '../../components/NoData';
 import LoadingSpinner from '../../components/LoadingSpinner';
-
+import Head from 'next/head';
 
 const FavoritePage = ():JSX.Element => {
 
@@ -39,24 +40,38 @@ const FavoritePage = ():JSX.Element => {
   if (isLoading) {
     return(
       <>
+    <Head>
+      <title>Favourite page</title>
+      <meta name="description" content={`This Favourite page. Check details below`}/>
+    </Head>
+      <NavBar/>
       <LoadingSpinner/>
       </>
     )
   }
 
   return (
-    <div>
-        <NavBar/>
-        <Breadcrumb/>
-        { favorites.length === 0 ? 
-        <NoData/> :
+    <>
+    <Head>
+      <title>Favourite page</title>
+      <meta name="description" content={`This favourite page. Check details below`}/>
+    </Head>
+       <NavBar/>
+       <div>
+          <div className={styles.rightWrapper}>
+          <Breadcrumb/>
+        { 
+         favorites.length === 0 ? 
+         <NoData/> :
         <>
-        <GridImages images={imageValue}/>
+         <GridImages images={imageValue}/>
         <Logs/>
         </>
-         }
-       
-    </div>
+         }  
+          </div>
+     </div>
+    </>
+
   )
 }
 

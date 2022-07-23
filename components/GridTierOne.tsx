@@ -41,13 +41,12 @@ const GritTierOne = ( {images} : IGridImagesProps ):JSX.Element => {
     const gridRender = images.map( (image:singleMapImage, idx: number ) => {
         if (idx === 0)  {
             return(
-                <div className={styles.longImage}>
+                <div key={image.id} className={styles.longImage}>
                      <Image
                        className={styles.image}
                        src={image.url}
                        alt="Picture of the dog"
-                       width={230}
-                       height={300}
+                       layout="fill"
                      />
              { hiddenFiller(image) }
                 </div>
@@ -56,13 +55,12 @@ const GritTierOne = ( {images} : IGridImagesProps ):JSX.Element => {
 
        if (idx === 4) {
         return(
-            <div className={styles.bigImage}>
+            <div key={image.id} className={styles.bigImage}>
                  <Image
                    className={styles.image}
                    src={image.url}
                    alt="Picture of the dog"
-                   width={500}
-                   height={300}
+                   layout="fill"
                  />
                 { hiddenFiller(image) }
             </div>
@@ -70,13 +68,12 @@ const GritTierOne = ( {images} : IGridImagesProps ):JSX.Element => {
        } 
        return(
         <>
-        <div className={styles.regularImage}>
+        <div key={image.id} className={styles.regularImage}>
         <Image
           className={styles.image} 
           src={image.url}
           alt="Picture of the dog"
-          width={230}
-          height={160}
+          layout="fill"
         />
          { hiddenFiller(image) }
       </div>
