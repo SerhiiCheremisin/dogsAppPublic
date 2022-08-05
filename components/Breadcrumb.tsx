@@ -3,13 +3,16 @@ import { useRouter } from 'next/router';
 import { BreadcrumbProps } from '../types/propsTypes';
 import { IDogObject } from '../types/commonTypes';
 import React, { useState, useEffect } from 'react';
-
+import { RootState } from '../redux/store';
+import { useSelector } from 'react-redux';
+import { backgroungColorRose } from '../services/common';
 
 //components
 import Image from 'next/image';
 
 const Breadcrumb = ( {breeds, setLimit, setSort, id, needToUpdate, refresh, update}: BreadcrumbProps ):JSX.Element => {
 const router = useRouter();
+const theme = useSelector( (state:RootState) => state.appReducer.isDarkTheme);
 
 const breedChoserHandler = (e:React.ChangeEvent<HTMLSelectElement>) => {
    if (e.target.value === "All breads") {
@@ -92,7 +95,7 @@ const additionSections = () => {
 
     return(
         <div className={styles.breadcrumbWrapper}>
-            <button onClick={() => router.back()} className={styles.rectangleSmall}>
+            <button style={backgroungColorRose(theme)}  onClick={() => router.back()} className={styles.rectangleSmall}>
             <Image
               src='/images/image-arrow-left.png'
               alt="Link to specific page"

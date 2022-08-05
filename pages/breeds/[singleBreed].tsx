@@ -3,7 +3,9 @@ import { getData, getFullInfoForBreed, getBasicInfoForBreed } from '../../servic
 import { IDogObject } from '../../types/commonTypes';
 import { useEffect, useState } from 'react';
 import styles from '../../styles/sharedStyles.module.css';
-
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { backgroungColorAlt } from '../../services/common';
 
 //components
 import NavBar from '../../components/NavBar/NavBar';
@@ -14,7 +16,6 @@ import SingleDogCard from '../../components/SingleDogCard';
 import Head from 'next/head';
 
 export const getStaticPaths = async ():Promise<IStaticPathsReturn> => {
-    
     const paths = await getData('/breeds')
     .then( data => { 
      const temp = data?.data.map( (el:IDogObject) => {
@@ -45,7 +46,9 @@ const SingleBreedInfo = ( {...props} ):JSX.Element => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const { singleBreed } = props;
     const breed = singleBreed[0];
-
+    
+    const theme = useSelector( (state:RootState) => state.appReducer.isDarkTheme);
+    
     useEffect(() => {
         getFullInfoForBreed(breed.id)
         .then( data => {
@@ -54,6 +57,15 @@ const SingleBreedInfo = ( {...props} ):JSX.Element => {
         })
     },[])
 
+    const customStyle = theme ? {
+        backgroundColor: '#343434' , 
+      height: '88vh'
+    }
+    :
+    {
+        height: '88vh'
+    }
+
     return(
         <>
     <Head>
@@ -61,7 +73,7 @@ const SingleBreedInfo = ( {...props} ):JSX.Element => {
       <meta name="description" content={`This single breed dog page. Check details about ${breed.name} below`}/>
     </Head>
      <NavBar/>
-     <div style={{height: '88vh'}} className={styles.rightWrapper}>
+     <div style={customStyle} className={styles.rightWrapper}>
      <Breadcrumb id ={breed.id}/>
      { 
      isLoading ? 

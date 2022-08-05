@@ -10,6 +10,9 @@ import { useState, useEffect } from 'react';
 import { getData } from '../../services/api';
 import { IFullDogInfo, orderType, imageType, limitType } from '../../types/commonTypes';
 import { singleMapImage } from '../../types/propsTypes';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { backgroungColorAlt } from '../../services/common';
 
 import Head from 'next/head';
 
@@ -22,6 +25,8 @@ const [order, setOrder] = useState<orderType>('Random');
 const [type, setType] = useState<imageType>('All');
 const [imageGrid, setImageGrid] = useState<singleMapImage[]>([]);
 const [isUploadNeeded, setIsUploadNeeded] = useState<boolean>(false);
+
+const theme = useSelector( (state:RootState) => state.appReducer.isDarkTheme);
 
 useEffect(() => {
   if (isUploadNeeded) {
@@ -106,7 +111,7 @@ if (isUploadNeeded) {
       <meta name="description" content={`This Gallery page. Check details below`}/>
     </Head>
      <NavBar/>
-     <div className={styles.rightWrapper}>
+     <div style={backgroungColorAlt(theme)} className={styles.rightWrapper}>
      <Breadcrumb refresh={refreshBreed} needToUpdate={setIsUploadNeeded} />
      <GalleryFilters setImagesView={setImageGrid} refresh={refreshBreed} setLimit={setLimit} setOrder={setOrder} setType={setType} breeds = {breeds}/>
      <GridImages limit={limit} images={imageGrid}/>

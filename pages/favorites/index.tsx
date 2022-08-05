@@ -3,6 +3,9 @@ import { getData } from '../../services/api';
 import { IFavoriteItem } from '../../types/commonTypes';
 import { IGridImagesProps, singleMapImage } from '../../types/propsTypes';
 import styles from '../../styles/sharedStyles.module.css';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { backgroungColorAlt } from '../../services/common';
 
 //components
 import Breadcrumb from '../../components/Breadcrumb';
@@ -18,6 +21,8 @@ const FavoritePage = ():JSX.Element => {
   const [favorites, setFavorites] = useState<IFavoriteItem[]>([]);
   const [imageValue, setImageValues] = useState<singleMapImage[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const theme = useSelector( (state:RootState) => state.appReducer.isDarkTheme);
 
   useEffect(() => {
     getData('/favourites')
@@ -58,7 +63,7 @@ const FavoritePage = ():JSX.Element => {
     </Head>
        <NavBar/>
        <div>
-          <div className={styles.rightWrapper}>
+          <div style={backgroungColorAlt(theme)}  className={styles.rightWrapper}>
           <Breadcrumb/>
         { 
          favorites.length === 0 ? 

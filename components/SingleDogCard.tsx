@@ -1,8 +1,13 @@
 import { ISingleDogCardProps } from '../types/propsTypes';
 import styles from '../styles/sharedStyles.module.css';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import { backgroungColorAlt } from '../services/common';
 
 const SingleDogCard = ( {dog} : ISingleDogCardProps ) : JSX.Element => {
   
+  const theme = useSelector( (state:RootState) => state.appReducer.isDarkTheme);
+
     return(
         <div className={styles.singleDogWrapper}>
           <span>{dog.bred_for}</span>
@@ -18,7 +23,7 @@ const SingleDogCard = ( {dog} : ISingleDogCardProps ) : JSX.Element => {
             </ul>
           </div>
 
-          <div className={styles.titleBlock}>
+          <div style={backgroungColorAlt(theme)} className={styles.titleBlock}>
             {dog.name.toUpperCase()}
           </div>
         </div>

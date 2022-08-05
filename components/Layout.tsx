@@ -1,20 +1,21 @@
 import styles from '../styles/sharedStyles.module.css';
-import { useContext } from 'react';
 import { useRouter } from 'next/router';
-import { WidthContext } from '../pages/_app';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import { backgroungColor } from '../services/common';
 
 import LeftFixedMenu from './leftMainItem/LeftFixedMenu';
 
-const Layout  = ( {children} ):JSX.Element => {
+const Layout = ( {children} ):JSX.Element => {
 
-    const router = useRouter();;
-    const appWidth = useContext(WidthContext);
-
+    const router = useRouter();
+    const theme = useSelector((state:RootState) => state.appReducer.isDarkTheme);
+    
   return(
       <>
-      <main className={styles.container}>  
+      <main style={backgroungColor(theme)} className={styles.container}>  
           <LeftFixedMenu/>
-         <div className={styles.containerItemRight}>
+         <div style={backgroungColor(theme)} className={styles.containerItemRight}>
            {children}
          </div>
       </main>

@@ -1,14 +1,19 @@
 import styles from '../../styles/sharedStyles.module.css';
 import { IRectangleProps } from '../../types/propsTypes';
+import { useSelector } from 'react-redux';
+import { backgroungColorAlt } from '../../services/common';
+import { RootState } from '../../redux/store';
 
 import Link from 'next/link';
 import Image from 'next/image'; 
 
 const Rectangle = ( {imageLink, linkTo, isActive} :IRectangleProps ):JSX.Element => {
- 
+   const theme = useSelector( (state:RootState) => state.appReducer.isDarkTheme);
+
+
     if (isActive) {
     return(
-        <button className={styles.rectangleBigActive}>
+        <button style={backgroungColorAlt(theme)} className={styles.rectangleBigActive}>
             <Link href={`${linkTo}`}>
             <Image
               src={imageLink}
@@ -21,7 +26,7 @@ const Rectangle = ( {imageLink, linkTo, isActive} :IRectangleProps ):JSX.Element
     )
  }
     return(
-        <button className={styles.rectangleBig}>
+        <button style={backgroungColorAlt(theme)}  className={styles.rectangleBig}>
             <Link href={`${linkTo}`}>
             <Image
               src={imageLink}

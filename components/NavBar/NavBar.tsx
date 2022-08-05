@@ -5,7 +5,9 @@ import { getData } from '../../services/api';
 import { IBreedChunk } from '../../types/commonTypes';
 import { INavBarProps } from '../../types/propsTypes';
 import { useRouter } from 'next/router';
-import { WidthContext } from '../../pages/_app';
+import { useSelector } from 'react-redux';
+import { backgroungColor, backgroungColorAlt, backgroungColorRose } from '../../services/common';
+import { RootState } from '../../redux/store';
 
 //components
 import Rectangle from './Rectangle';
@@ -14,12 +16,14 @@ import Image from 'next/image';
 import BurgerMenu from '../BurgerMenu';
 import AdapriveMainMenu from '../AdaptiveMainMenu';
 
+
 const NavBar = ( { isSearchPage, searchName }:INavBarProps ): JSX.Element => {
 
   const [searchedBreed, setSearchedBreed] = useState<string>('');
   const [isSearchAvtive, setIsSearchActive] = useState<boolean>(false);
   const [breeds, setBreeds] = useState<IBreedChunk[]>([]);
   const router = useRouter();
+  const theme = useSelector( (state:RootState) => state.appReducer.isDarkTheme);
 
   useEffect(() => {
     getData('/breeds').then( data => {
@@ -77,12 +81,19 @@ const NavBar = ( { isSearchPage, searchName }:INavBarProps ): JSX.Element => {
         </div> 
     )
   } 
+ const inputTheme = () => {
+   if (theme) {
+    return backgroungColorAlt(theme);
+   }
+  if (isSearchAvtive === false && isSearchPage === true) {
+    return  {
+      border: '2px solid #FF868E',
+      color: 'black'} 
+  }
+  return {}
+ } 
+
  const inputValue = isSearchAvtive === false && isSearchPage === true ? searchName : searchedBreed;
- const inputBorder = isSearchAvtive === false && isSearchPage === true ? 
- {
-  border: '2px solid #FF868E',
-  color: 'black'} 
- : {};
 
  const favoriteLogic = router.pathname.includes('favorites') ?  '/images/image-heart-Dark.png' : '/images/image-heart.png' ;
  const likesLogic = router.pathname.includes('/likes') ? '/images/smile-white.png' : '/images/image-smile.png';
@@ -93,13 +104,13 @@ const NavBar = ( { isSearchPage, searchName }:INavBarProps ): JSX.Element => {
  const isDislikeActive = router.pathname.includes('dislikes') ? true : false;
 
     return(
-        <nav className={styles.navWrapper}>
+        <nav style={backgroungColor(theme)} className={styles.navWrapper}>
             <div className={styles.searchAndLinks}> 
             <form action="#" onSubmit={e => formHandler(e)}>
-            <input style={inputBorder} value={inputValue} onChange={e => inputHandler(e)} placeholder='Search for breeds by name' id='input' type="text" />   
+            <input style={inputTheme()} value={inputValue} onChange={e => inputHandler(e)} placeholder='Search for breeds by name' id='input' type="text" />   
             { isSearchAvtive &&  listRenderLogic()}    
             <button type='submit' className={styles.label}> 
-              <div className={shared.rectangleSmall}>
+              <div style={backgroungColorRose(theme)} className={shared.rectangleSmall}>
               <Image
                className={styles.image}
                src="/images/image-search-icon.png"

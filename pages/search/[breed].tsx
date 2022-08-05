@@ -4,6 +4,8 @@ import { IDogObject, IFullDogInfo} from '../../types/commonTypes';
 import { singleMapImage } from '../../types/propsTypes';
 import { useState, useEffect } from 'react';
 import styles from '../../styles/sharedStyles.module.css';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 //components
 import Head from "next/head";
@@ -48,6 +50,9 @@ const SearchPAge = ( {...props} ):JSX.Element => {
     const {breed} = props;
     const breedInformation = breed[0];
 
+    const theme = useSelector( (state:RootState) => state.appReducer.isDarkTheme);
+
+
     useEffect(() => {
         getFullInfoForBreed(breedInformation.id)
         .then( data => {
@@ -56,6 +61,15 @@ const SearchPAge = ( {...props} ):JSX.Element => {
         });
     },[])
 
+    const customStyle = theme ? {
+        backgroundColor: '#343434' , 
+        height: '88vh'
+    }
+    :
+    {
+        height: '88vh'
+    }
+
     return(
         <>
          <Head>
@@ -63,7 +77,7 @@ const SearchPAge = ( {...props} ):JSX.Element => {
             <meta name="description" content={`This is page for a ${breedInformation.name}. Check details below`}/>
         </Head>
         <NavBar isSearchPage={true} searchName={breedInformation.name} />
-        <div style={{height: '88vh'}} className={styles.rightWrapper}>
+        <div style={customStyle} className={styles.rightWrapper}>
         <Breadcrumb/> 
         <div>
         <span>Result search for : </span> {breedInformation.name}

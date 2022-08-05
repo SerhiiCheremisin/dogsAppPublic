@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { getData, getOneImage} from '../../services/api';
 import styles from '../../styles/sharedStyles.module.css';
 import { singleMapImage } from '../../types/propsTypes';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { backgroungColorAlt } from '../../services/common';
 
 //components
 import Breadcrumb from '../../components/Breadcrumb';
@@ -16,6 +19,8 @@ const DislikePage = ():JSX.Element => {
   const [dislikes, setDisLikes] = useState<[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [imageProps, setImageProps] = useState<singleMapImage[]>([]);
+
+  const theme = useSelector( (state:RootState) => state.appReducer.isDarkTheme);
 
 
   useEffect(() => {
@@ -68,7 +73,7 @@ const DislikePage = ():JSX.Element => {
     </Head>
       <NavBar/>
       <div>
-       <div className={styles.rightWrapper}>
+       <div style={backgroungColorAlt(theme)}  className={styles.rightWrapper}>
         <Breadcrumb/>
         { 
         dislikes.length === 0 ? 

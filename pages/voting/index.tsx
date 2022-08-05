@@ -2,6 +2,9 @@ import {useState,useEffect} from 'react';
 import { getData } from '../../services/api';
 import { ISingleDog } from '../../types/commonTypes';
 import styles from '../../styles/sharedStyles.module.css';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { backgroungColorAlt } from '../../services/common';
 
 //components
 import NavBar from '../../components/NavBar/NavBar';
@@ -17,6 +20,8 @@ const VotingPage = ():JSX.Element => {
     const [randomDog, setRandomDog] = useState<ISingleDog[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isPhotoReady, setIsPhotoReady] = useState<boolean>(false);
+
+   const theme = useSelector( (state:RootState) => state.appReducer.isDarkTheme);
 
     const updateState = ():void => {
       getData('/images/search').then( data => {
@@ -50,7 +55,7 @@ const VotingPage = ():JSX.Element => {
         <meta name="description" content={`This isvoting page. Check details below`}/>
       </Head>
         <NavBar/>
-        <div className={styles.rightWrapper}>
+        <div style={backgroungColorAlt(theme)} className={styles.rightWrapper}>
         <Breadcrumb/>
         { imageRender }
         <AdderButtons update={updateState} id={randomDog[0]?.id} />
