@@ -2,10 +2,6 @@ import { IStaticPathsReturn, IStaticSingleBreedProps } from '../../types/nextJSS
 import { getData, getFullInfoForBreed, getBasicInfoForBreed } from '../../services/api';
 import { IDogObject } from '../../types/commonTypes';
 import { useEffect, useState } from 'react';
-import styles from '../../styles/sharedStyles.module.css';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { backgroungColorAlt } from '../../services/common';
 
 //components
 import NavBar from '../../components/NavBar/NavBar';
@@ -14,6 +10,7 @@ import BigImage from '../../components/voting/BigImage';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import SingleDogCard from '../../components/SingleDogCard';
 import Head from 'next/head';
+import RightBlock from '../../components/RightBlock';
 
 export const getStaticPaths = async ():Promise<IStaticPathsReturn> => {
     const paths = await getData('/breeds')
@@ -47,8 +44,6 @@ const SingleBreedInfo = ( {...props} ):JSX.Element => {
     const { singleBreed } = props;
     const breed = singleBreed[0];
     
-    const theme = useSelector( (state:RootState) => state.appReducer.isDarkTheme);
-    
     useEffect(() => {
         getFullInfoForBreed(breed.id)
         .then( data => {
@@ -57,15 +52,6 @@ const SingleBreedInfo = ( {...props} ):JSX.Element => {
         })
     },[])
 
-    const customStyle = theme ? {
-        backgroundColor: '#343434' , 
-      height: '88vh'
-    }
-    :
-    {
-        height: '88vh'
-    }
-
     return(
         <>
     <Head>
@@ -73,7 +59,7 @@ const SingleBreedInfo = ( {...props} ):JSX.Element => {
       <meta name="description" content={`This single breed dog page. Check details about ${breed.name} below`}/>
     </Head>
      <NavBar/>
-     <div style={customStyle} className={styles.rightWrapper}>
+     <RightBlock type={'fixed'} color={'alt'}>
      <Breadcrumb id ={breed.id}/>
      { 
      isLoading ? 
@@ -82,7 +68,7 @@ const SingleBreedInfo = ( {...props} ):JSX.Element => {
      <BigImage url ={url}/> 
      }  
      <SingleDogCard dog={breed} />
-     </div>
+     </RightBlock>
         </>
     )
 }

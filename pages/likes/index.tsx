@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { getData, getOneImage} from '../../services/api';
-import styles from '../../styles/sharedStyles.module.css';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { backgroungColorAlt } from '../../services/common';
 
 //components
 import Breadcrumb from '../../components/Breadcrumb';
@@ -14,6 +10,7 @@ import NoData from '../../components/NoData';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import { singleMapImage } from '../../types/propsTypes';
 import Head from 'next/head';
+import RightBlock from '../../components/RightBlock';
 
 const Likesage = ():JSX.Element => {
 
@@ -21,7 +18,6 @@ const Likesage = ():JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [imageProps, setImageProps] = useState<singleMapImage[]>([]);
 
-  const theme = useSelector( (state:RootState) => state.appReducer.isDarkTheme);
 
  useEffect(() => {
   getData('/votes')
@@ -73,7 +69,7 @@ const Likesage = ():JSX.Element => {
     </Head>
      <NavBar/>
       <div>
-        <div style={backgroungColorAlt(theme)} className={styles.rightWrapper}>
+        <RightBlock type={'float'} color={'alt'}>
         <Breadcrumb/>
         { imageProps.length === 0 ? 
         <NoData/> :
@@ -82,7 +78,7 @@ const Likesage = ():JSX.Element => {
         <Logs/>
         </>
          }
-      </div>    
+      </RightBlock>    
     </div>
     </>
 

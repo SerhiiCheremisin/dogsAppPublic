@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getData } from '../../services/api';
 import { IFavoriteItem } from '../../types/commonTypes';
-import { IGridImagesProps, singleMapImage } from '../../types/propsTypes';
-import styles from '../../styles/sharedStyles.module.css';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { backgroungColorAlt } from '../../services/common';
+import { singleMapImage } from '../../types/propsTypes';
 
 //components
 import Breadcrumb from '../../components/Breadcrumb';
@@ -15,6 +11,7 @@ import GridImages from '../../components/voting/GridImages';
 import NoData from '../../components/NoData';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import Head from 'next/head';
+import RightBlock from '../../components/RightBlock';
 
 const FavoritePage = ():JSX.Element => {
 
@@ -22,7 +19,6 @@ const FavoritePage = ():JSX.Element => {
   const [imageValue, setImageValues] = useState<singleMapImage[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const theme = useSelector( (state:RootState) => state.appReducer.isDarkTheme);
 
   useEffect(() => {
     getData('/favourites')
@@ -63,7 +59,7 @@ const FavoritePage = ():JSX.Element => {
     </Head>
        <NavBar/>
        <div>
-          <div style={backgroungColorAlt(theme)}  className={styles.rightWrapper}>
+          <RightBlock type={'float'} color={'alt'}>
           <Breadcrumb/>
         { 
          favorites.length === 0 ? 
@@ -73,7 +69,7 @@ const FavoritePage = ():JSX.Element => {
         <Logs/>
         </>
          }  
-          </div>
+          </RightBlock>
      </div>
     </>
 

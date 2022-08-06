@@ -1,10 +1,6 @@
 import {useState,useEffect} from 'react';
 import { getData } from '../../services/api';
 import { ISingleDog } from '../../types/commonTypes';
-import styles from '../../styles/sharedStyles.module.css';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { backgroungColorAlt } from '../../services/common';
 
 //components
 import NavBar from '../../components/NavBar/NavBar';
@@ -14,6 +10,7 @@ import LoadingSpinner from '../../components/LoadingSpinner';
 import Logs from '../../components/voting/Logs';
 import AdderButtons from '../../components/voting/Adders';
 import Head from 'next/head';
+import RightBlock from '../../components/RightBlock';
 
 const VotingPage = ():JSX.Element => {
 
@@ -21,7 +18,6 @@ const VotingPage = ():JSX.Element => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isPhotoReady, setIsPhotoReady] = useState<boolean>(false);
 
-   const theme = useSelector( (state:RootState) => state.appReducer.isDarkTheme);
 
     const updateState = ():void => {
       getData('/images/search').then( data => {
@@ -55,12 +51,12 @@ const VotingPage = ():JSX.Element => {
         <meta name="description" content={`This isvoting page. Check details below`}/>
       </Head>
         <NavBar/>
-        <div style={backgroungColorAlt(theme)} className={styles.rightWrapper}>
+        <RightBlock type={'float'} color ={'alt'}>
         <Breadcrumb/>
         { imageRender }
         <AdderButtons update={updateState} id={randomDog[0]?.id} />
         <Logs/>
-        </div>  
+        </RightBlock>  
      </>
     ) 
 }

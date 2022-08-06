@@ -1,17 +1,15 @@
 import { getData , getBasicInfoForBreed, getFullInfoForBreed} from '../../services/api';
-import { staticPath, IStaticPathsReturn, IStaticPropsReturn } from '../../types/nextJSStatic';
-import { IDogObject, IFullDogInfo} from '../../types/commonTypes';
+import { IStaticPathsReturn, IStaticPropsReturn } from '../../types/nextJSStatic';
+import { IDogObject} from '../../types/commonTypes';
 import { singleMapImage } from '../../types/propsTypes';
 import { useState, useEffect } from 'react';
-import styles from '../../styles/sharedStyles.module.css';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
 
 //components
 import Head from "next/head";
 import NavBar from '../../components/NavBar/NavBar';
 import Breadcrumb from '../../components/Breadcrumb';
 import GridImages from '../../components/voting/GridImages';
+import RightBlock from '../../components/RightBlock';
 
 export const getStaticPaths = async ():Promise<IStaticPathsReturn> => {
     
@@ -50,8 +48,6 @@ const SearchPAge = ( {...props} ):JSX.Element => {
     const {breed} = props;
     const breedInformation = breed[0];
 
-    const theme = useSelector( (state:RootState) => state.appReducer.isDarkTheme);
-
 
     useEffect(() => {
         getFullInfoForBreed(breedInformation.id)
@@ -61,15 +57,6 @@ const SearchPAge = ( {...props} ):JSX.Element => {
         });
     },[])
 
-    const customStyle = theme ? {
-        backgroundColor: '#343434' , 
-        height: '88vh'
-    }
-    :
-    {
-        height: '88vh'
-    }
-
     return(
         <>
          <Head>
@@ -77,13 +64,13 @@ const SearchPAge = ( {...props} ):JSX.Element => {
             <meta name="description" content={`This is page for a ${breedInformation.name}. Check details below`}/>
         </Head>
         <NavBar isSearchPage={true} searchName={breedInformation.name} />
-        <div style={customStyle} className={styles.rightWrapper}>
+        <RightBlock type={'fixed'} color={'alt'} >
         <Breadcrumb/> 
         <div>
         <span>Result search for : </span> {breedInformation.name}
         </div>
          {!isLoading && <GridImages images={[{id: breedInformation.id, url: url, name: breedInformation.name}]}/>}
-        </div>
+        </RightBlock>
         </>
     )
 }

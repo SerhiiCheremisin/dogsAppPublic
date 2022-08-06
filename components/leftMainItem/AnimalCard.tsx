@@ -18,7 +18,7 @@ const AnimalCard = ( {...props} ):JSX.Element => {
         if (theme) {
            return route.route === card.linkTo ? 'rgba(255, 134, 142, 1)' : '#343434';
         }
-        bgColorCustom
+        return bgColorCustom
     }
 
     const bgColorCustom = route.route === card.linkTo ? 'rgba(255, 134, 142, 1)' : '';

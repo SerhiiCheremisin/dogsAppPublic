@@ -4,15 +4,13 @@ import Breadcrumb from '../../components/Breadcrumb';
 import GridImages from '../../components/voting/GridImages';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import Head from 'next/head';
+import RightBlock from '../../components/RightBlock';
 
 import { useState, useEffect } from 'react';
 import { getData } from '../../services/api';
-import styles from '../../styles/sharedStyles.module.css';
 import { singleMapImage } from '../../types/propsTypes';
 import { IFullDogInfo } from '../../types/commonTypes';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { backgroungColorAlt } from '../../services/common';
+
 
 const BreedsPage = ():JSX.Element => {
 
@@ -21,8 +19,6 @@ const BreedsPage = ():JSX.Element => {
     const [filteredBreed, setFilteredBreed] = useState<singleMapImage[]>([]);
     const [limit, setLimit] = useState<number>(99);
     const [isLoading, setIsLoading] = useState<boolean>(true); 
-
-    const theme = useSelector( (state:RootState) => state.appReducer.isDarkTheme);
 
     const selectBreedHandler = () => {
        if (breeds.length !== 0) {
@@ -84,10 +80,10 @@ const BreedsPage = ():JSX.Element => {
       <meta name="description" content={`This main page. Check information about any breed you want`}/>
     </Head>
        <NavBar/>
-       <div style={backgroungColorAlt(theme)} className={styles.rightWrapper}>
+       <RightBlock type={'float'} color={'alt'}>
        <Breadcrumb update={selectBreedHandler} setLimit={setLimit} breeds={breeds} setSort={breedSorter}/>
        { isLoading === true ? <LoadingSpinner/> : <GridImages images={filteredBreed} limit={limit}/> }   
-       </div>
+       </RightBlock>
        </>
     )
 }
