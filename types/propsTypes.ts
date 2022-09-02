@@ -10,7 +10,7 @@ export interface IBigImageProps {
 
 export interface singleMapImage {
     url: string,
-    id: number,
+    id: string,
     name:string,
     image_id?: string
 }
