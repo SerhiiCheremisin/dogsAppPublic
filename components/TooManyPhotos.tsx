@@ -19,7 +19,7 @@ useEffect(() => {
  if (images.length !== 0) {
   images.map( (el:singleMapImage, id: number) => {
         start = id-20;
-        end = id
+        end = id;
         switch (id) {
           case (20) : 
           case (40) : 

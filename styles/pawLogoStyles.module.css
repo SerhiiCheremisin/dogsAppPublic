@@ -7,6 +7,16 @@
   cursor: pointer;
   width: 20%;
 }
+@media screen and (max-width: 800px) {
+  .pawLogoContainer .pawbBlockWrapper {
+    width: 40%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .pawLogoContainer .pawbBlockWrapper {
+    width: 70%;
+  }
+}
 .pawLogoContainer .pawbBlockWrapper .pawLogoContainerPawBox {
   display: flex;
   position: relative;
@@ -34,6 +44,21 @@
   width: 16%;
   align-items: center;
 }
+@media screen and (max-width: 1600px) {
+  .pawLogoContainer .themeSwitcherContainer {
+    width: 14%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .pawLogoContainer .themeSwitcherContainer {
+    width: 26%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .pawLogoContainer .themeSwitcherContainer {
+    width: 30%;
+  }
+}
 .pawLogoContainer .themeSwitcherContainer .themeSwitcher {
   width: 100%;
   display: flex;
@@ -46,6 +71,11 @@
   border-radius: 50px;
   background-color: #F8F8F7;
   padding: 5px;
+}
+@media screen and (max-width: 600px) {
+  .pawLogoContainer .themeSwitcherContainer .themeSwitcher .eye {
+    display: none;
+  }
 }
 .pawLogoContainer .themeSwitcherContainer .themeSwitcher .switcher {
   display: flex;

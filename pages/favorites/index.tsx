@@ -6,8 +6,8 @@ import { singleMapImage } from '../../types/propsTypes';
 //components
 import Breadcrumb from '../../components/Breadcrumb';
 import NavBar from '../../components/NavBar/NavBar';
-import Logs from '../../components/voting/Logs';
-import GridImages from '../../components/voting/GridImages';
+import Logs from '../../components/Logs';
+import GridImages from '../../components/GridImages';
 import NoData from '../../components/NoData';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import Head from 'next/head';

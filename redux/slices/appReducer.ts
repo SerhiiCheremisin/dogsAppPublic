@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { IReduxState } from '../../types/commonTypes';
 
-const initState  = {
+const initState : IReduxState = {
     appWidth : 0,
     isDarkTheme: false
 }

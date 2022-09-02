@@ -12,7 +12,8 @@ const AnimalCard = ( {...props} ):JSX.Element => {
 
     const { card } = props
     const route = useRouter();
-    const theme = useSelector((state:RootState) => state.appReducer.isDarkTheme)
+    const theme = useSelector((state:RootState) => state.appReducer.isDarkTheme);
+    const appWidth = useSelector( (state:RootState) => state.appReducer.appWidth);
 
     const bGroundLogic = () => {
         if (theme) {

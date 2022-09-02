@@ -13,6 +13,8 @@ import Image from 'next/image';
 const Breadcrumb = ( {breeds, setLimit, setSort, id, needToUpdate, refresh, update}: BreadcrumbProps ):JSX.Element => {
 const router = useRouter();
 const theme = useSelector( (state:RootState) => state.appReducer.isDarkTheme);
+const [isSorted, setIsSorted] = useState<boolean>(false);
+const [isSortedReverse, setIsSortedReverse] = useState<boolean>(false);
 
 const breedChoserHandler = (e:React.ChangeEvent<HTMLSelectElement>) => {
    if (e.target.value === "All breads") {
@@ -33,6 +35,21 @@ const breadcrumbButtonName = () => {
   return router.pathname.toUpperCase().replace('/', '');
 }  
 
+const sortButtonsHandler = (type: string):void => {
+   switch (type) {
+      case ('sort') : 
+      setSort('sort');
+      setIsSorted(true);
+      setIsSortedReverse(false);
+      break;
+      case ('reverse') :
+        setSort('reverse');
+        setIsSorted(false);
+        setIsSortedReverse(true);
+        break;
+   } 
+}
+ 
 const additionSections = () => {
     if(router.pathname === '/breeds') {
         return(
@@ -54,14 +71,14 @@ const additionSections = () => {
                 <option value="15">{`Limit: 15`}</option>
                 <option value="20">{`Limit: 20`}</option>
              </select>
-             <div onClick={(e:any) => setSort('sort')} style={{backgroundColor: '#F8F8F7'}} className={styles.rectangleSmall}>
+             <div onClick={(e:any) => sortButtonsHandler('sort')} style={isSorted ? {backgroundColor: '#FF868E'} : {backgroundColor: '#F8F8F7'}} className={styles.rectangleSmall}>
               <Image
               src='/images/sort-up.png'
               alt="Link to specific page"
               width={20}
               height={20}
             /></div>
-             <div onClick={(e:any) => setSort('reverse')} style={{backgroundColor: '#F8F8F7'}} className={styles.rectangleSmall}>
+             <div onClick={(e:any) => sortButtonsHandler('reverse')} style={isSortedReverse ? {backgroundColor:'#FF868E'} : {backgroundColor: '#F8F8F7'}} className={styles.rectangleSmall}>
              <Image
               src='/images/sort-down.png'
               alt="Link to specific page"
@@ -95,7 +112,8 @@ const additionSections = () => {
 
     return(
         <div className={styles.breadcrumbWrapper}>
-            <button style={backgroungColorRose(theme)}  onClick={() => router.back()} className={styles.rectangleSmall}>
+         <div className={styles.sharedElements}>
+         <button style={backgroungColorRose(theme)}  onClick={() => router.back()} className={styles.rectangleSmall}>
             <Image
               src='/images/image-arrow-left.png'
               alt="Link to specific page"
@@ -106,6 +124,7 @@ const additionSections = () => {
             <div className={styles.breadcrumbButton}>
                 {breadcrumbButtonName()}
             </div>
+         </div>
             { additionSections() }
           
         </div>

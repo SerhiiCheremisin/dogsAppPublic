@@ -50,11 +50,27 @@
   align-items: center;
   width: 100%;
   gap: 10px;
+  padding: 0;
+}
+@media only screen and (max-width: 1600px) {
+  .navWrapper .searchAndLinks {
+    padding: 10px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .navWrapper .searchAndLinks {
+    justify-content: space-between;
+  }
 }
 .navWrapper .searchAndLinks form {
   display: flex;
   width: 100%;
   position: relative;
+}
+@media only screen and (max-width: 600px) {
+  .navWrapper .searchAndLinks form {
+    display: none;
+  }
 }
 .navWrapper .searchAndLinks input {
   height: 60px;
@@ -83,7 +99,12 @@
     display: none;
   }
 }
-@media only screen and (max-width: 1366px) {
+@media only screen and (max-width: 1600px) {
+  .navWrapper .searchAndLinks .label {
+    left: 95%;
+  }
+}
+@media only screen and (max-width: 1200px) {
   .navWrapper .searchAndLinks .label {
     left: 93%;
   }
@@ -144,9 +165,23 @@
 }
 .mobileModal .closeModalWrapper {
   position: relative;
-  top: -27%;
+  top: -25%;
   left: 47%;
   display: flex;
+  padding: 10px;
   justify-content: center;
   align-items: center;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+}
+@media screen and (max-width: 800px) {
+  .mobileModal .closeModalWrapper {
+    left: 45%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .mobileModal .closeModalWrapper {
+    top: -35%;
+    left: 40%;
+  }
 }/*# sourceMappingURL=navBar.module.css.map */

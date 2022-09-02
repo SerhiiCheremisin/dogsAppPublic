@@ -123,3 +123,8 @@ export interface IFavoriteItem {
     sub_id: any,
     user_id: string
 }
+
+export interface IReduxState {
+    appWidth : number,
+    isDarkTheme: boolean
+}

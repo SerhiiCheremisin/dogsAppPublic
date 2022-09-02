@@ -2,7 +2,7 @@
 import Breadcrumb from '../../components/Breadcrumb';
 import NavBar from '../../components/NavBar/NavBar';
 import GalleryFilters from '../../components/gallery/GalleryFilters';
-import GridImages from '../../components/voting/GridImages';
+import GridImages from '../../components/GridImages';
 import UploadPortal from '../../components/gallery/UploadPortal';
 
 import styles from '../../styles/sharedStyles.module.css';
@@ -25,11 +25,12 @@ const [isUploadNeeded, setIsUploadNeeded] = useState<boolean>(false);
 
 useEffect(() => {
   if (isUploadNeeded) {
-    document.body.style.overflow = 'hidden'
+    document.body.style.overflowY = 'hidden';
+    document.body.style.overflowX = 'hidden';
+    return
   }
-  return () => [
-    document.body.style.overflow = 'scroll'
-  ]
+    document.body.style.overflowY = 'scroll';
+    document.body.style.overflowX = 'hidden';
 }, [isUploadNeeded])
 
 const refreshBreed = () => {

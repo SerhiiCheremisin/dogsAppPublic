@@ -1,12 +1,12 @@
-import styles from '../../styles/gridImages.module.css';
-import { IGridImagesProps, singleMapImage } from '../../types/propsTypes';
+import styles from '../styles/gridImages.module.css';
+import { IGridImagesProps, singleMapImage } from '../types/propsTypes';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-import GritTierOne from '../GridTierOne';
-import GritTierTwo from '../GridTierTwo';
-import LoadingSpinner from '../LoadingSpinner';
-import TooManyPhotos from '../TooManyPhotos';
+import GritTierOne from './GridTierOne';
+import GritTierTwo from './GridTierTwo';
+import LoadingSpinner from './LoadingSpinner';
+import TooManyPhotos from './TooManyPhotos';
 
 const GridImages = ( {images, limit}:IGridImagesProps ):JSX.Element => {
 const router = useRouter();

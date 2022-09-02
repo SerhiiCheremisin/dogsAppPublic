@@ -1,7 +1,7 @@
-import styles from '../../styles/sharedStyles.module.css';
-import { getData } from '../../services/api';
+import styles from '../styles/sharedStyles.module.css';
+import { getData } from '../services/api';
 import { useEffect, useState } from 'react';
-import { ILogItem, IFavorite } from '../../types/commonTypes';
+import { ILogItem, IFavorite } from '../types/commonTypes';
 
 import Image from 'next/image';
 
@@ -81,7 +81,7 @@ const addedInfo = (value:number) => {
                <div key={el.id} className={styles.logListItem}>
                 <div className={styles.info}>
                   <time>{time(el.created_at)}</time>
-                  <span>Image ID</span>
+                  <span>Image ID :</span>
                   <strong>{el.image_id}</strong>
                   <span>{addedInfo(el.value)}</span>  
                 </div>

@@ -12,7 +12,6 @@ const GritTierOne = ( {images} : IGridImagesProps ):JSX.Element => {
     const addToFavorite = (id:string, e:React.MouseEvent<HTMLButtonElement>):void => {
       addTofavourites({image_id: id});
      }
-      
 
     const hiddenFiller = (image:singleMapImage) => {
         if (router.pathname.includes('/breeds') || router.pathname.includes('/search')) {

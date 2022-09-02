@@ -1,22 +1,79 @@
+//templates
+.simpleView {
+  width: 100%;
+  display: grid;
+  gap:20px;
+  justify-items: center;
+  align-items: center;
+  margin-bottom: 10px;
+  grid-template-columns: repeat(3, 31%);
+  grid-template-rows: repeat(3, 150px);
+}
 
+.imageTemplate {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: fill;
+  position: relative;
+}
+
+.allBTNTemplate {
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: 100%;
+  left:0;
+  top: 0;
+  background-color: rgba(255, 134, 142, 0.7);
+}
+
+.btnTemplate {
+  position: absolute;  
+  background: #FFFFFF;
+  border-radius: 10px;
+  color: #FF868E;
+  border: none;
+  outline: none;
+  width: 180px;
+  height: 34px;
+  bottom: 15px;
+}
+
+.favTemplate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #FFFFFF;
+  border-radius: 10px;
+  position: absolute; 
+  cursor: pointer;
+  width: 70px;
+  height: 50px;
+}
+
+//styles
 .gridWrapperOne {
-    width: 100%;
+  @media screen and (max-width: 800px) {
+    height: 185vh;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(5, 19%);
     display: grid;
-    gap:20px;
-    justify-items: center;
-    align-items: center;
-    margin-bottom: 10px;
-    grid-template-columns: repeat(3, 31%);
-    grid-template-rows: repeat(3, 150px);
+    grid-template-areas: 
+    'high1' 
+    'regular1' 
+    'regular2'
+    'big1'
+    'regular3';
+  }
+
+   @extend .simpleView;
     grid-template-areas: 
           'high1 regular1 regular2'
           'high1 big1 big1'
           'regular3 big1 big1';
    .bigImage{
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    position: relative;
+    @extend .imageTemplate;
 
     .hiddenFilter {
         .button{
@@ -31,10 +88,7 @@
        }
    }
   .regularImage{
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    position: relative;
+    @extend .imageTemplate;
 
     .hiddenFilter {
         .button{
@@ -56,10 +110,7 @@
     }
    }    
   .longImage{
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    position: relative;
+    @extend .imageTemplate;
 
     .hiddenFilter {
         .button{
@@ -74,47 +125,20 @@
         grid-area: high1;
        }
 }
-   .image{
-    border-radius: 10px;
-    object-fit: fill;
-   }
 
    .longImage, .regularImage, .bigImage {
          .hiddenFilter {
-        position: absolute;
-        display: none;
-        width: 100%;
-        height: 100%;
-        left:0;
-        top: 0;
-        background-color: rgba(255, 134, 142, 0.7);
+          @extend .allBTNTemplate;
 
         .button{
-          position: absolute;  
-          background: #FFFFFF;
-          border-radius: 10px;
-          color: #FF868E;
-          border: none;
-          outline: none;
-          width: 180px;
-          height: 34px;
-          bottom: 15px;
+          @extend .btnTemplate;
           &:hover{
             cursor: pointer;
           }
         }
 
         .favoriteDiv{
-             display: flex;
-             justify-content: center;
-             align-items: center;
-             background: #FFFFFF;
-             border-radius: 10px;
-             position: absolute; 
-             cursor: pointer;
-             border: none;
-             width: 70px;
-             height: 50px;
+          @extend .favTemplate;
         } 
     }
 
@@ -129,24 +153,26 @@
    } }
 
    .gridWrapperTwo {
-    width: 100%;
-    display: grid;
-    gap:20px;
-    justify-items: center;
-    align-items: center;
-    margin-bottom: 10px;
-    grid-template-columns: repeat(3, 31%);
-    grid-template-rows: repeat(3, 150px);
+      @media screen and (max-width: 800px) {
+        height: 185vh;
+        grid-template-columns: 100%;
+        grid-template-rows: repeat(5, 19%);
+        display: grid;
+        grid-template-areas: 
+        'high' 
+        'regular1' 
+        'regular2'
+        'big'
+        'regular3';
+  }
+  @extend .simpleView;
     grid-template-areas: 
           'regular1 regular2 high'
           'big big high'
           'big big regular3';
    
    .bigImage{
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    position: relative;
+    @extend .imageTemplate;
 
     .hiddenFilter {
         .button{
@@ -161,10 +187,7 @@
        }
    }
   .regularImage{
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    position: relative;
+    @extend .imageTemplate;
 
     .hiddenFilter {
         .button{
@@ -186,10 +209,7 @@
     }
    }    
   .longImage{
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    position: relative;
+    @extend .imageTemplate;
 
     .hiddenFilter {
         .button{
@@ -211,38 +231,15 @@
 
    .longImage, .regularImage, .bigImage {
          .hiddenFilter {
-        position: absolute;
-        display: none;
-        width: 100%;
-        height: 100%;
-        left:0;
-        top: 0;
-        background-color: rgba(255, 134, 142, 0.7);
-
+             @extend .allBTNTemplate;
         .button{
-          position: absolute;  
-          background: #FFFFFF;
-          border-radius: 10px;
-          color: #FF868E;
-          border: none;
-          outline: none;
-          width: 180px;
-          height: 34px;
-          bottom: 15px;
+          @extend .btnTemplate;
           &:hover{
             cursor: pointer;
           }
         }
         .favoriteDiv{
-             display: flex;
-             justify-content: center;
-             align-items: center;
-             background: #FFFFFF;
-             border-radius: 10px;
-             position: absolute; 
-             cursor: pointer;
-             width: 70px;
-             height: 50px;
+          @extend .favTemplate;
         } 
     }
     &:hover{
@@ -273,6 +270,5 @@
       height: 40px;
       border-radius: 10px;
       cursor: pointer;
-
      }
    }

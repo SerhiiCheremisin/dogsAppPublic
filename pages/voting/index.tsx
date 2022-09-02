@@ -1,13 +1,14 @@
 import {useState,useEffect} from 'react';
 import { getData } from '../../services/api';
 import { ISingleDog } from '../../types/commonTypes';
+import styles from '../../styles/sharedStyles.module.css';
 
 //components
 import NavBar from '../../components/NavBar/NavBar';
 import Breadcrumb from '../../components/Breadcrumb';
 import BigImage from '../../components/voting/BigImage';
 import LoadingSpinner from '../../components/LoadingSpinner';
-import Logs from '../../components/voting/Logs';
+import Logs from '../../components/Logs';
 import AdderButtons from '../../components/voting/Adders';
 import Head from 'next/head';
 import RightBlock from '../../components/RightBlock';
@@ -53,8 +54,10 @@ const VotingPage = ():JSX.Element => {
         <NavBar/>
         <RightBlock type={'float'} color ={'alt'}>
         <Breadcrumb/>
+        <div className={styles.photoWrapper}>
         { imageRender }
         <AdderButtons update={updateState} id={randomDog[0]?.id} />
+        </div>
         <Logs/>
         </RightBlock>  
      </>

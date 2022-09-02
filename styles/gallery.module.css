@@ -4,9 +4,16 @@
   background: #F8F8F7;
   border-radius: 20px;
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   padding: 20px;
   gap: 1%;
+}
+@media screen and (max-width: 800px) {
+  .filterWrapper {
+    flex-direction: column;
+    height: auto;
+  }
 }
 .filterWrapper .filterItem {
   display: flex;
@@ -14,11 +21,49 @@
   width: 49%;
   margin-bottom: 10px;
 }
+@media screen and (max-width: 800px) {
+  .filterWrapper .filterItem {
+    width: 100%;
+  }
+}
 .filterWrapper .filterItem:last-child {
   display: grid;
+  justify-content: start;
   grid-template-columns: 70% 10%;
   grid-template-rows: 30% 50%;
   grid-template-areas: "label label" "select button";
+}
+@media screen and (max-width: 1600px) {
+  .filterWrapper .filterItem:last-child {
+    grid-template-columns: 35% 10%;
+  }
+}
+@media screen and (max-width: 1366px) {
+  .filterWrapper .filterItem:last-child {
+    grid-template-columns: 40% 10%;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .filterWrapper .filterItem:last-child {
+    grid-template-columns: 45% 10%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .filterWrapper .filterItem:last-child {
+    grid-template-columns: 55% 10%;
+  }
+}
+@media screen and (max-width: 900px) {
+  .filterWrapper .filterItem:last-child {
+    grid-template-columns: 60% 10%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .filterWrapper .filterItem:last-child {
+    grid-template-columns: 100%;
+    grid-template-rows: 30% 50% 20%;
+    grid-template-areas: "label" "select" "button";
+  }
 }
 .filterWrapper .filterItem label {
   grid-area: label;
@@ -32,8 +77,18 @@
   width: 230px;
   height: 40px;
 }
+@media screen and (max-width: 800px) {
+  .filterWrapper .filterItem select {
+    width: 100%;
+  }
+}
 .filterWrapper .filterItem select:last-child {
   width: 290px;
+}
+@media screen and (max-width: 800px) {
+  .filterWrapper .filterItem select:last-child {
+    width: 100%;
+  }
 }
 .filterWrapper .filterItem button {
   display: flex;
@@ -44,31 +99,69 @@
   height: 40px;
   background: #FFFFFF;
   border-radius: 10px;
+  margin-left: 0;
   border: none;
   cursor: pointer;
+}
+@media screen and (max-width: 800px) {
+  .filterWrapper .filterItem button {
+    margin-left: 0;
+    width: 100%;
+  }
 }
 
 .portalWrapper {
   display: flex;
-  width: 1920px;
-  height: 1080px;
+  width: 100%;
+  height: 100vh;
   z-index: 999;
   background-color: rgba(29, 29, 29, 0.6);
-  position: relative;
-  left: -133%;
-  top: -12%;
+  position: absolute;
   padding: 30px;
+  justify-content: flex-end;
+  left: 0;
+  top: 0;
+}
+@media screen and (max-width: 1600px) {
+  .portalWrapper {
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+  }
+}
+@media screen and (max-width: 1366px) {
+  .portalWrapper {
+    padding: 0;
+    align-items: flex-start;
+  }
+}
+@media screen and (max-width: 400px) {
+  .portalWrapper {
+    width: 146%;
+    height: 150vh;
+  }
 }
 .portalWrapper .portalCard {
   border-radius: 20px;
   width: 680px;
   height: 840px;
   background-color: rgb(248, 248, 247);
-  margin-left: 60%;
   display: flex;
   align-items: center;
   flex-direction: column;
   padding: 20px;
+}
+@media screen and (max-width: 700px) {
+  .portalWrapper .portalCard {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+  }
+}
+@media screen and (max-width: 400px) {
+  .portalWrapper .portalCard {
+    height: 150vh;
+  }
 }
 .portalWrapper .portalCard .successRespond {
   display: flex;
@@ -101,6 +194,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media screen and (max-width: 700px) {
+  .portalWrapper .portalCard .portalCardPhoto {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .portalWrapper .portalCard .portalCardPhoto {
+    height: 450px;
+  }
 }
 .portalWrapper .portalCard .portalCardPhoto .photoWrapper {
   position: relative;

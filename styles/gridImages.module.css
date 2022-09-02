@@ -1,4 +1,4 @@
-.gridWrapperOne {
+.simpleView, .gridWrapperTwo, .gridWrapperOne {
   width: 100%;
   display: grid;
   gap: 20px;
@@ -7,13 +7,62 @@
   margin-bottom: 10px;
   grid-template-columns: repeat(3, 31%);
   grid-template-rows: repeat(3, 150px);
-  grid-template-areas: "high1 regular1 regular2" "high1 big1 big1" "regular3 big1 big1";
 }
-.gridWrapperOne .bigImage {
+
+.imageTemplate, .gridWrapperTwo .longImage, .gridWrapperTwo .regularImage, .gridWrapperTwo .bigImage, .gridWrapperOne .longImage, .gridWrapperOne .regularImage, .gridWrapperOne .bigImage {
   width: 100%;
   height: 100%;
   border-radius: 10px;
+  -o-object-fit: fill;
+     object-fit: fill;
   position: relative;
+}
+
+.allBTNTemplate, .gridWrapperTwo .longImage .hiddenFilter, .gridWrapperTwo .regularImage .hiddenFilter, .gridWrapperTwo .bigImage .hiddenFilter, .gridWrapperOne .longImage .hiddenFilter, .gridWrapperOne .regularImage .hiddenFilter, .gridWrapperOne .bigImage .hiddenFilter {
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(255, 134, 142, 0.7);
+}
+
+.btnTemplate, .gridWrapperTwo .longImage .hiddenFilter .button, .gridWrapperTwo .regularImage .hiddenFilter .button, .gridWrapperTwo .bigImage .hiddenFilter .button, .gridWrapperOne .longImage .hiddenFilter .button, .gridWrapperOne .regularImage .hiddenFilter .button, .gridWrapperOne .bigImage .hiddenFilter .button {
+  position: absolute;
+  background: #FFFFFF;
+  border-radius: 10px;
+  color: #FF868E;
+  border: none;
+  outline: none;
+  width: 180px;
+  height: 34px;
+  bottom: 15px;
+}
+
+.favTemplate, .gridWrapperTwo .longImage .hiddenFilter .favoriteDiv, .gridWrapperTwo .regularImage .hiddenFilter .favoriteDiv, .gridWrapperTwo .bigImage .hiddenFilter .favoriteDiv, .gridWrapperOne .longImage .hiddenFilter .favoriteDiv, .gridWrapperOne .regularImage .hiddenFilter .favoriteDiv, .gridWrapperOne .bigImage .hiddenFilter .favoriteDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #FFFFFF;
+  border-radius: 10px;
+  position: absolute;
+  cursor: pointer;
+  width: 70px;
+  height: 50px;
+}
+
+.gridWrapperOne {
+  grid-template-areas: "high1 regular1 regular2" "high1 big1 big1" "regular3 big1 big1";
+}
+@media screen and (max-width: 800px) {
+  .gridWrapperOne {
+    height: 185vh;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(5, 19%);
+    display: grid;
+    grid-template-areas: "high1" "regular1" "regular2" "big1" "regular3";
+  }
 }
 .gridWrapperOne .bigImage .hiddenFilter .button {
   left: 33%;
@@ -24,12 +73,6 @@
 }
 .gridWrapperOne .bigImage:nth-child(5) {
   grid-area: big1;
-}
-.gridWrapperOne .regularImage {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  position: relative;
 }
 .gridWrapperOne .regularImage .hiddenFilter .button {
   left: 11%;
@@ -47,12 +90,6 @@
 .gridWrapperOne .regularImage:nth-child(4) {
   grid-area: regular3;
 }
-.gridWrapperOne .longImage {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  position: relative;
-}
 .gridWrapperOne .longImage .hiddenFilter .button {
   left: 11%;
 }
@@ -63,45 +100,8 @@
 .gridWrapperOne .longImage:nth-child(1) {
   grid-area: high1;
 }
-.gridWrapperOne .image {
-  border-radius: 10px;
-  -o-object-fit: fill;
-     object-fit: fill;
-}
-.gridWrapperOne .longImage .hiddenFilter, .gridWrapperOne .regularImage .hiddenFilter, .gridWrapperOne .bigImage .hiddenFilter {
-  position: absolute;
-  display: none;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  background-color: rgba(255, 134, 142, 0.7);
-}
-.gridWrapperOne .longImage .hiddenFilter .button, .gridWrapperOne .regularImage .hiddenFilter .button, .gridWrapperOne .bigImage .hiddenFilter .button {
-  position: absolute;
-  background: #FFFFFF;
-  border-radius: 10px;
-  color: #FF868E;
-  border: none;
-  outline: none;
-  width: 180px;
-  height: 34px;
-  bottom: 15px;
-}
 .gridWrapperOne .longImage .hiddenFilter .button:hover, .gridWrapperOne .regularImage .hiddenFilter .button:hover, .gridWrapperOne .bigImage .hiddenFilter .button:hover {
   cursor: pointer;
-}
-.gridWrapperOne .longImage .hiddenFilter .favoriteDiv, .gridWrapperOne .regularImage .hiddenFilter .favoriteDiv, .gridWrapperOne .bigImage .hiddenFilter .favoriteDiv {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #FFFFFF;
-  border-radius: 10px;
-  position: absolute;
-  cursor: pointer;
-  border: none;
-  width: 70px;
-  height: 50px;
 }
 .gridWrapperOne .longImage:hover .hiddenFilter, .gridWrapperOne .regularImage:hover .hiddenFilter, .gridWrapperOne .bigImage:hover .hiddenFilter {
   display: flex;
@@ -111,21 +111,16 @@
 }
 
 .gridWrapperTwo {
-  width: 100%;
-  display: grid;
-  gap: 20px;
-  justify-items: center;
-  align-items: center;
-  margin-bottom: 10px;
-  grid-template-columns: repeat(3, 31%);
-  grid-template-rows: repeat(3, 150px);
   grid-template-areas: "regular1 regular2 high" "big big high" "big big regular3";
 }
-.gridWrapperTwo .bigImage {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  position: relative;
+@media screen and (max-width: 800px) {
+  .gridWrapperTwo {
+    height: 185vh;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(5, 19%);
+    display: grid;
+    grid-template-areas: "high" "regular1" "regular2" "big" "regular3";
+  }
 }
 .gridWrapperTwo .bigImage .hiddenFilter .button {
   left: 33%;
@@ -136,12 +131,6 @@
 }
 .gridWrapperTwo .bigImage:nth-child(4) {
   grid-area: big;
-}
-.gridWrapperTwo .regularImage {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  position: relative;
 }
 .gridWrapperTwo .regularImage .hiddenFilter .button {
   left: 11%;
@@ -159,12 +148,6 @@
 .gridWrapperTwo .regularImage:nth-child(5) {
   grid-area: regular3;
 }
-.gridWrapperTwo .longImage {
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  position: relative;
-}
 .gridWrapperTwo .longImage .hiddenFilter .button {
   left: 11%;
 }
@@ -180,39 +163,8 @@
   -o-object-fit: fill;
      object-fit: fill;
 }
-.gridWrapperTwo .longImage .hiddenFilter, .gridWrapperTwo .regularImage .hiddenFilter, .gridWrapperTwo .bigImage .hiddenFilter {
-  position: absolute;
-  display: none;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  background-color: rgba(255, 134, 142, 0.7);
-}
-.gridWrapperTwo .longImage .hiddenFilter .button, .gridWrapperTwo .regularImage .hiddenFilter .button, .gridWrapperTwo .bigImage .hiddenFilter .button {
-  position: absolute;
-  background: #FFFFFF;
-  border-radius: 10px;
-  color: #FF868E;
-  border: none;
-  outline: none;
-  width: 180px;
-  height: 34px;
-  bottom: 15px;
-}
 .gridWrapperTwo .longImage .hiddenFilter .button:hover, .gridWrapperTwo .regularImage .hiddenFilter .button:hover, .gridWrapperTwo .bigImage .hiddenFilter .button:hover {
   cursor: pointer;
-}
-.gridWrapperTwo .longImage .hiddenFilter .favoriteDiv, .gridWrapperTwo .regularImage .hiddenFilter .favoriteDiv, .gridWrapperTwo .bigImage .hiddenFilter .favoriteDiv {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #FFFFFF;
-  border-radius: 10px;
-  position: absolute;
-  cursor: pointer;
-  width: 70px;
-  height: 50px;
 }
 .gridWrapperTwo .longImage:hover .hiddenFilter, .gridWrapperTwo .regularImage:hover .hiddenFilter, .gridWrapperTwo .bigImage:hover .hiddenFilter {
   display: flex;

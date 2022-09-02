@@ -5,6 +5,14 @@
    justify-content: space-between;
 
    .pawbBlockWrapper{
+  
+    @media screen and (max-width: 800px) {
+      width: 40%;
+    }
+    @media screen and (max-width: 600px) {
+      width: 70%;
+    }
+
     display: flex;
     cursor: pointer;
     width: 20%;
@@ -33,6 +41,19 @@
     }
    }
    .themeSwitcherContainer {
+
+    @media screen and (max-width: 1600px) {
+      width: 14%;
+    }
+    
+    @media screen and (max-width: 800px) {
+      width: 26%;
+    }
+
+    @media screen and (max-width: 600px) {
+      width: 30%;
+    }
+
     display: flex;
     cursor: pointer;
     width: 16%;
@@ -44,6 +65,10 @@
         justify-content: space-between;
 
         .eye {
+          @media screen and (max-width: 600px) {
+           display: none;
+          }
+
           display: flex;
           width: 40px;
           height: 40px;

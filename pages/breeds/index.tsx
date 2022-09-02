@@ -1,7 +1,7 @@
 //components
 import NavBar from '../../components/NavBar/NavBar';
 import Breadcrumb from '../../components/Breadcrumb';
-import GridImages from '../../components/voting/GridImages';
+import GridImages from '../../components/GridImages';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import Head from 'next/head';
 import RightBlock from '../../components/RightBlock';
@@ -13,7 +13,6 @@ import { IFullDogInfo } from '../../types/commonTypes';
 
 
 const BreedsPage = ():JSX.Element => {
-
 
     const [breeds, setBreeds] = useState<IFullDogInfo[]>([]);
     const [filteredBreed, setFilteredBreed] = useState<singleMapImage[]>([]);

@@ -22,8 +22,21 @@ const NavBar = ( { isSearchPage, searchName }:INavBarProps ): JSX.Element => {
   const [searchedBreed, setSearchedBreed] = useState<string>('');
   const [isSearchAvtive, setIsSearchActive] = useState<boolean>(false);
   const [breeds, setBreeds] = useState<IBreedChunk[]>([]);
+  const [isBurgerMenuShows, setIsBurgerMenuShows] = useState<boolean>(false);
   const router = useRouter();
   const theme = useSelector( (state:RootState) => state.appReducer.isDarkTheme);
+  const appWidth = useSelector((state:RootState) => state.appReducer.appWidth);
+
+  useEffect( () => {
+     if(isBurgerMenuShows) {
+      document.body.style.overflowY = 'hidden';
+      document.body.style.overflowX = 'hidden'; 
+     }
+     if (!isBurgerMenuShows) {
+      document.body.style.overflowY = 'scroll';
+      document.body.style.overflowX = 'hidden';
+     }
+  }, [isBurgerMenuShows])
 
   useEffect(() => {
     getData('/breeds').then( data => {
@@ -106,6 +119,8 @@ const NavBar = ( { isSearchPage, searchName }:INavBarProps ): JSX.Element => {
     return(
         <nav style={backgroungColor(theme)} className={styles.navWrapper}>
             <div className={styles.searchAndLinks}> 
+            {appWidth < 1600 && <BurgerMenu setModal={setIsBurgerMenuShows}/>}
+            {isBurgerMenuShows && <AdapriveMainMenu setModal={setIsBurgerMenuShows} />}
             <form action="#" onSubmit={e => formHandler(e)}>
             <input style={inputTheme()} value={inputValue} onChange={e => inputHandler(e)} placeholder='Search for breeds by name' id='input' type="text" />   
             { isSearchAvtive &&  listRenderLogic()}    
