@@ -73,7 +73,7 @@ const DislikePage = ():JSX.Element => {
         dislikes.length === 0 ? 
         <NoData/> :
         <>
-        <GridImages images={imageProps}/>
+        <GridImages images={imageProps} limit={5}/>
         <Logs/>
         </>
          }

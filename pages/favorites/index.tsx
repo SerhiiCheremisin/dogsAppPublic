@@ -27,7 +27,7 @@ const FavoritePage = ():JSX.Element => {
       data.data.map( (el:IFavoriteItem) => {
         const obj:singleMapImage = {
           url: el.image.url,
-          id: el.id,
+          id: el.id.toString(),
           name:'',
         }
         images.push(obj);
@@ -65,7 +65,7 @@ const FavoritePage = ():JSX.Element => {
          favorites.length === 0 ? 
          <NoData/> :
         <>
-         <GridImages images={imageValue}/>
+         <GridImages images={imageValue} limit={5}/>
         <Logs/>
         </>
          }  
